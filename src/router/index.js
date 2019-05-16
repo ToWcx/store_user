@@ -6,6 +6,7 @@ const Home = () => import('@/components/Home')
 const Goods = () => import('@/components/Goods')
 const Search = () => import('@/components/Search')
 const Order = () => import('@/components/Order')
+const Address = () => import('@/components/Address')
 
 Vue.use(Router)
 
@@ -44,7 +45,7 @@ const router = new Router({
       }
     }, {
       path: '/address',
-      component: Add,
+      component: Address,
       meta: {
         requiresAuth: false
       }
