@@ -131,23 +131,7 @@ export default {
 </script>
 
 <style scoped>
-  /* html {
-    overflow-y: scroll;
-  }
-
-  :root {
-    overflow-x: auto; 
-    overflow-y: hidden;
-  }
-
-  :root body {
-    position: absolute;
-  }
-
-  body {
-    width: 100vw;
-    overflow: hidden;
-  } */
+  
   body { overflow-y: scroll; }
   *{
     list-style: none;
@@ -247,7 +231,8 @@ export default {
   .ljgm {
     width: 115px;
     height: 43px;
-    background-color: #dd182b;
+    /* background-color: #dd182b; */
+    background-color: #409EFF;
     float: left;
   }
   .jr_box a {
@@ -258,13 +243,13 @@ export default {
     line-height: 43px;
   }
   .jrgwc a:hover {
-    background-color: black;
+    background-color: #aaa;
     color: #DDD;
   }
   .ljgm a:hover {
-    background-color: yellow;
-    color: #dd182b;
-  }
+    background-color: #188aff;
+    color: #DDD;
+  } 
   .qgj {
     font-size: 14px;
     color: #dd182b;

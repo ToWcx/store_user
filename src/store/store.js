@@ -21,5 +21,4 @@ export default new Vuex.Store({
 		storage: window.sessionStorage
 	})]
 })
-
-//默认持久化所有state(暂时)
+//持久化所有state

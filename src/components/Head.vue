@@ -32,8 +32,22 @@
              mode="horizontal"
              @select="handleSelect"
              background-color="#eee">
-                <el-menu-item index="2"><a href="#">登录</a></el-menu-item>
-                <el-menu-item index="3"><a href="#">注册</a></el-menu-item>
+                <el-menu-item index="2">
+                    <span v-if="this.$store.state.count != 0">
+                        {{this.$store.state.count}}
+                    </span>
+                    <span v-else>
+                        <router-link to="/Login">登录</router-link>                
+                    </span>
+                </el-menu-item>
+                <el-menu-item index="3">
+                    <span v-if="this.$store.state.count != 0">
+                        <router-link to="/Login">退出</router-link>    
+                    </span>
+                    <span v-else>
+                        <router-link to="/Login">注册</router-link>                
+                    </span>
+                </el-menu-item>
                 <el-menu-item index="4"><a href="#">收藏夹</a></el-menu-item>
                 <el-submenu index="5">
                     <template slot="title">我的</template>

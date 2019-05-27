@@ -1,4 +1,5 @@
 <template>
+ <el-scrollbar>
     <div class="body-bg">
     <!-- <div class="container"> -->
         <div class="head">
@@ -92,6 +93,7 @@
         </div>
     </div>
     </div>
+    </el-scrollbar>
 </template>
 
 
@@ -200,8 +202,12 @@ export default {
         list-style: none;
         text-decoration: none;
         color: #424242;
+        
     }
-    .body-bg {
+    .el-scrollbar__wrap{
+        background-color: #f5f5f5;
+    }
+    /* .body-bg {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -209,7 +215,8 @@ export default {
         left: 0;
         overflow-y: auto;
         background-color: #f5f5f5;
-    }
+    } */
+    html { overflow-x: hidden; overflow-y: auto; }
     .container {
         max-width: 1080px;
         margin: 0 auto;

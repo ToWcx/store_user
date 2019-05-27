@@ -42,7 +42,7 @@ export default {
     methods:{
         login(){
             // this.$router.replace('/home')
-            this.axios.post("/user/login",{
+            this.axios.put("/auth",{
                 name: this.name,
                 passwd: this.passwd
             }).then(res => {

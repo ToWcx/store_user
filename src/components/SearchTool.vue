@@ -6,7 +6,7 @@
                         <el-input v-model="input" placeholder="请输入内容" id="search"></el-input>
                     </div>
                     <div class="ss">
-                        <el-button icon="el-icon-search"><router-link to="./Search">搜索</router-link></el-button>
+                        <el-button style="" icon="el-icon-search"><router-link to="./Search">搜索</router-link></el-button>
                     </div>
                 </div>
     </div>
