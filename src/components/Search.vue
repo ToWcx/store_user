@@ -1,0 +1,193 @@
+<template>
+  <div class="body-bg">
+    <div class="head">
+      <dh></dh>
+      <div style="height:50px;"></div>
+      <!-- <search-tool></search-tool> -->
+      <div class="container">
+        <div class="fl">
+          条件
+          <el-select v-model="selected">
+            <el-option v-for="item in option" :value="item.value" :key="item.value" :label="item.text"></el-option>
+          </el-select>
+          <div class="search">
+          <el-input v-model="like" placeholder="请输入内容" id="search"></el-input></div>
+          <div class="ss"><el-button icon="el-icon-search" @click="doLike"><router-link to="./Search">搜索</router-link> </el-button></div>
+          <!-- <input type="text" v-model="like"> <button @click="doLike">确定</button> -->
+        </div>
+        <br>
+        <table>
+          <!-- <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>price</th>
+            <th>sold</th>
+            <th>img</th>
+          </tr> -->
+          <!-- <tr v-for="item in list" :key="item.id">
+            <td>{{item.id}}</td>
+            <td><router-link :to="{path: `/get/goodsDetail/${item.id}`}">{{item.name}}</router-link></td>
+            <td>{{item.price |price}}</td>
+            <td>{{item.sold |sold}}</td>
+            <td><img :src="doImg(item.img)" class="img"></td>
+          </tr> -->
+          <template v-for="object in list">
+            <li :key="object.id">
+              <div class="img"><router-link :to="{path: `/home/${object.id}`}"><img :src="doImg(object.img)" class="img"></router-link></div>
+              <div class="good_desc"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">{{object.name}}</router-link></div>
+              <p class="intro">
+                <span class="qgj">抢购价：</span><span class="price">{{object.price|price}}</span>
+                <span class="sold">{{object.sold|sold}}</span>
+              </p>
+              <div class="jr_box">
+                <div class="jrgwc"><a href="">加入购物车</a></div>
+                <div class="ljgm"><a href="">立即购买</a></div>
+              </div>
+            </li>
+          </template>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import dh from './Head'
+import searchTool from './SearchTool'
+export default {
+  name: 'search',
+  components:{
+    dh,
+    searchTool
+  },
+  data(){
+    return{
+      list: [],
+      /*
+      */
+      like: '',
+      selected: 0,
+      option:[
+        {text: '全部', value: 0},
+        {text: '零食' , value: 1},
+        {text: '书籍' , value: 2},
+        {text: '游戏', value: 3},
+      ]
+    }
+  },
+  computed:{
+    doImg(){
+      return param => {
+        return 'http://172.18.44.25:8888'+param;
+      }
+    }
+  },
+  filters:{
+    price(param){
+      return '￥'+param
+    },
+    sold(param){
+      return '月销'+param+'笔'
+    }
+  },
+  /*
+  */
+  methods:{
+    doLike(){
+      if(this.like==''){
+        if(this.selected === 0){
+          this.axios.get('/goodsImg')
+          .then(res => {
+            this.list = res.data.list
+          })
+        }else{
+          this.axios.get('/goodsImg?type='+this.selected)
+          .then(res => {
+            this.list = res.data.list
+          })
+        }
+      }else{
+        if(this.selected === 0){
+          this.axios.get('/goodsImg?like='+this.like)
+          .then(res => {
+            this.list = res.data.list
+          })
+        }else{
+          this.axios.get('/goodsImg?type='+this.selected+'&like='+this.like)
+          .then(res => {
+            this.list = res.data.list
+          })
+        }
+      }
+    }
+  },
+  created(){
+    this.axios.get('/goodsImg')
+    .then(res => {
+      this.list = res.data.list
+    })
+  }
+}
+</script>
+
+<style scoped>
+  *{
+        list-style: none;
+        text-decoration: none;
+        color: #424242;
+    }
+  .search-center{
+      text-align: center;
+      margin: 0 auto;
+      height: 45px;
+      width: 420px;
+      /* position: absolute; */
+      /* margin-left: 350px;
+      margin-top: 28.75px; */
+  }
+  .fl{
+    float: left;
+    width: 1080px;
+  }
+  .el-select{
+    width: 80px;
+  }
+  .search{
+      width: 300px;
+      display: inline-block;
+      /* position: relative; */
+      /* float: left; */
+      margin: 0px;
+      padding: 0px;
+  }
+  .ss {
+        width: 100px;
+        margin:0px;
+        padding:0px;
+        display: inline-block;
+        /* position: relative; */
+        /* float: left; */
+    }
+  .body-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        overflow-y: auto;
+        background-color: #f5f5f5;
+    }
+  .container {
+        max-width: 1080px;
+        margin: 0 auto;
+    }
+    /* 搜索 */
+  
+  img.img{
+    height: 55px;
+    width: 55px;
+  }
+  tr th {
+
+  }
+</style>
