@@ -16,7 +16,6 @@
           <!-- <input type="text" v-model="like"> <button @click="doLike">确定</button> -->
         </div>
         <br>
-        <table>
           <!-- <tr>
             <th>id</th>
             <th>name</th>
@@ -31,6 +30,7 @@
             <td>{{item.sold |sold}}</td>
             <td><img :src="doImg(item.img)" class="img"></td>
           </tr> -->
+          <ul class="ul">
           <template v-for="object in list">
             <li :key="object.id">
               <div class="img"><router-link :to="{path: `/home/${object.id}`}"><img :src="doImg(object.img)" class="img"></router-link></div>
@@ -45,7 +45,7 @@
               </div>
             </li>
           </template>
-        </table>
+          </ul>
       </div>
     </div>
   </div>
@@ -131,63 +131,143 @@ export default {
 </script>
 
 <style scoped>
+  /* html {
+    overflow-y: scroll;
+  }
+
+  :root {
+    overflow-x: auto; 
+    overflow-y: hidden;
+  }
+
+  :root body {
+    position: absolute;
+  }
+
+  body {
+    width: 100vw;
+    overflow: hidden;
+  } */
+  body { overflow-y: scroll; }
   *{
-        list-style: none;
-        text-decoration: none;
-        color: #424242;
-    }
+    list-style: none;
+    text-decoration: none;
+    color: #424242;
+  }
   .search-center{
-      text-align: center;
-      margin: 0 auto;
-      height: 45px;
-      width: 420px;
-      /* position: absolute; */
-      /* margin-left: 350px;
-      margin-top: 28.75px; */
+    text-align: center;
+    margin: 0 auto;
+    height: 45px;
+    width: 420px;
+    /* position: absolute; */
+    /* margin-left: 350px;
+    margin-top: 28.75px; */
   }
   .fl{
     float: left;
     width: 1080px;
   }
-  .el-select{
+    .el-select{
     width: 80px;
   }
   .search{
-      width: 300px;
-      display: inline-block;
-      /* position: relative; */
-      /* float: left; */
-      margin: 0px;
-      padding: 0px;
+    width: 300px;
+    display: inline-block;
+    /* position: relative; */
+    /* float: left; */
+    margin: 0px;
+    padding: 0px;
   }
   .ss {
-        width: 100px;
-        margin:0px;
-        padding:0px;
-        display: inline-block;
-        /* position: relative; */
-        /* float: left; */
-    }
+    width: 100px;
+    margin:0px;
+    padding:0px;
+    display: inline-block;
+    /* position: relative; */
+    /* float: left; */
+  }
   .body-bg {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        overflow-y: auto;
-        background-color: #f5f5f5;
-    }
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+      background-color: #f5f5f5;
+  }
   .container {
-        max-width: 1080px;
-        margin: 0 auto;
-    }
-    /* 搜索 */
-  
-  img.img{
-    height: 55px;
-    width: 55px;
+      max-width: 1080px;
+      margin: 0 auto;
   }
-  tr th {
+  /* 搜索 */
 
+  .img {
+      height: 156px;
+      width: 168px;
+      margin: 0 auto;
+      
   }
+  .ul li {
+    display: block;
+    width: 230px;
+    float: left;
+    margin: 20px;
+    
+  }
+  .ul {
+    padding: 0px;
+  }
+  .good_desc {
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #dd182b;
+  }
+  .sold {
+    font-size: 14px;
+    color: #dd182b;
+  }
+  .jr_box {
+    height: 43px;
+    width: 230px;
+  }
+  .jrgwc {
+    width: 115px;
+    height: 43px;
+    background-color: #DDD;
+    float: left;
+  }
+  .ljgm {
+    width: 115px;
+    height: 43px;
+    background-color: #dd182b;
+    float: left;
+  }
+  .jr_box a {
+    display: inline-block;
+    width: 115px;
+    height: 43px;
+    text-align: center;
+    line-height: 43px;
+  }
+  .jrgwc a:hover {
+    background-color: black;
+    color: #DDD;
+  }
+  .ljgm a:hover {
+    background-color: yellow;
+    color: #dd182b;
+  }
+  .qgj {
+    font-size: 14px;
+    color: #dd182b;
+  }
+
 </style>

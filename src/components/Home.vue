@@ -14,10 +14,10 @@
 			<a class="toolbar_goods" href="#toolbar_ls" rel="nofollow">零食</a>
 		</div>
 		<div class="toolbar_cart">
-			<a class="toolbar_goods" href="#toolbar_yx" rel="nofollow">游戏</a>
+			<a class="toolbar_goods" href="#toolbar_sj" rel="nofollow">书籍</a>
 		</div>
 		<div class="toolbar_cart">
-			<a class="toolbar_goods" href="#toolbar_sj" rel="nofollow">书籍</a>
+			<a class="toolbar_goods" href="#toolbar_yx" rel="nofollow">游戏</a>
 		</div>
 		<div class="toolbar_cart">
 			<a class="toolbar_goods" href="#">购物车</a>
@@ -35,7 +35,7 @@
         <div class="good_wrapper">
             <div class="good_list">
                 <ul>
-                    <h1>零食</h1>
+                    <h1 id="toolbar_ls">零食</h1>
                     <template v-for="object in goods">
                         <li v-if="object.cid==1" :key="object.id">
                             <div class="img"><router-link :to="{path: `/home/${object.id}`}"><img :src="doImg(object.img)" class="img"></router-link></div>
@@ -51,8 +51,10 @@
                         </li>
                     </template>
                 </ul>
+                
                 <ul>
                     <h1>书籍</h1>
+                    <div class="hide" id="toolbar_sj"></div>
                     <template v-for="object in goods">
                         <li v-if="object.cid==2" :key="object.id">
                             <div class="img"><router-link :to="{path: `/home/${object.id}`}"><img :src="doImg(object.img)" class="img"></router-link></div>
@@ -70,6 +72,7 @@
                 </ul>
                 <ul>
                     <h1>游戏</h1>
+                    <div class="hide" id="toolbar_yx"></div>
                     <template v-for="object in goods">
                         <li v-if="object.cid==3" :key="object.id">
                             <div class="img"><router-link :to="{path: `/home/${object.id}`}"><img :src="doImg(object.img)" class="img"></router-link></div>
@@ -267,7 +270,8 @@ export default {
     .ljgm {
         width: 115px;
         height: 43px;
-        background-color: #dd182b;
+        /* background-color: #dd182b; */
+        background-color: #409EFF;
         float: left;
     }
     .jr_box a {
@@ -278,16 +282,21 @@ export default {
         line-height: 43px;
     }
     .jrgwc a:hover {
-        background-color: black;
+        background-color: #aaa;
         color: #DDD;
     }
     .ljgm a:hover {
-        background-color: yellow;
-        color: #dd182b;
+        background-color: #188aff;
+        color: #DDD;
     }
     .qgj {
         font-size: 14px;
         color: #dd182b;
+    }
+    .hide {
+        /*display: none;*/
+        position: absolute;
+        margin-top: -65px;
     }
     /* .search-center{
         text-align: center;
@@ -331,7 +340,8 @@ export default {
     .toolbar_cart {
         width: 50px;
         height: 35px;
-        background-color: #dd182b;
+        background-color: #409EFF;
+        /* background-color: #dd182b; */
         color: #f5f5f5;
         text-align: center;
         line-height: 35px;
@@ -348,19 +358,13 @@ export default {
     }
 
     .toolbar_cart .toolbar_goods:hover {
-        color: #dd182b;
+        color: #409EFF;
         background-color: #f5f5f5;
         /* border: 1px solid #dd182b; */
     }
 
     .fhdb:hover{
-        color: #dd182b;
-    }
-
-    .hide {
-        /*display: none;*/
-        position: absolute;
-        margin-top: -37px;
+        color: #409EFF;
     }
 
     /* .carts:hover {
