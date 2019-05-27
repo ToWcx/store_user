@@ -781,5 +781,21 @@
       "uid": 1,
       "id": 4
     }
-  ]
+  ],
+  "position":
+    {
+      "list":[
+        {
+          "proviceId":1,
+          "proviceName":"广东省"
+        },
+        {
+          "proviceId":2,
+          "proviceName":"广州"
+        }, {
+          "proviceId":3,
+          "proviceName":"茂名"
+        }
+      ]
+    }
 }
