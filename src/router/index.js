@@ -34,11 +34,13 @@ const router = new Router({
       props: true,
       children:[
           {
-            path:'/details/:id',
+            path:'details/:id',
+            name:"details",
             component:Details
           },
           {
-            path:'/comments/:id',
+            path:'comments/:id',
+            name:"comments",
             component:Comments
           }
       ]

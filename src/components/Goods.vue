@@ -66,8 +66,8 @@
                 <el-button type="danger"><router-link to="">详情介绍</router-link></el-button>
             </div> -->
              <el-menu :default-active="1" class="menu" mode="horizontal">
-                <el-menu-item index="1"><router-link :to="'/home/details/'+id">详情介绍</router-link></el-menu-item>
-                <el-menu-item index="2"><router-link :to="'comments/'+id">商品评价</router-link></el-menu-item>
+                <el-menu-item index="1"><router-link :to="{name:'details',params:{id}}" replace>详情介绍</router-link></el-menu-item>
+                <el-menu-item index="2"><router-link :to="{name:'comments',params:{id}}" replace>商品评价</router-link></el-menu-item>
             </el-menu>
         </div>
         <div class="div" style="margin-bottom:50px;width:100%">
