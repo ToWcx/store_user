@@ -7,7 +7,8 @@ const Goods = () => import('@/components/Goods')
 const Search = () => import('@/components/Search')
 const Order = () => import('@/components/Order')
 const Address = () => import('@/components/Address')
-
+const Details = () => import('@/components/Details')
+const Comments = () => import('@/components/Comments')
 Vue.use(Router)
 
 const router = new Router({
@@ -30,7 +31,17 @@ const router = new Router({
     }, {
       path: '/home/:id',
       component: Goods,
-      props: true
+      props: true,
+      children:[
+          {
+            path:'/details/:id',
+            component:Details
+          },
+          {
+            path:'/comments/:id',
+            component:Comments
+          }
+      ]
     },{
       path: '/goodsDes',
       component: Goods

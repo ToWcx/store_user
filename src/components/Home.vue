@@ -14,9 +14,9 @@
                 <ul>
                     <h1>零食</h1>
                     <template v-for="object in goods">
-                        <li v-if="object.cid==1" :key="object.gid">
-                            <div class="img"><router-link :to="{path: `/home/${object.gid}`}"><img :src="doImg(object.gid)"></router-link></div>
-                            <div class="good_desc"><router-link :to="{path: `/home/${object.gid}`}" class="link" :title="object.name">{{object.name}}</router-link></div>
+                        <li v-if="object.cid==1" :key="object.id">
+                            <div class="img"><router-link :to="{path: `/home/${object.id}`}"><img :src="doImg(object.img)" class="img"></router-link></div>
+                            <div class="good_desc"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">{{object.name}}</router-link></div>
                             <p class="intro">
                                 <span class="qgj">抢购价：</span><span class="price">{{object.price|price}}</span>
                                 <span class="sold">{{object.sold|sold}}</span>
@@ -31,9 +31,9 @@
                 <ul>
                     <h1>书籍</h1>
                     <template v-for="object in goods">
-                        <li v-if="object.cid==1" :key="object.gid">
-                            <div class="img"><router-link :to="{path: `/home/${object.gid}`}"><img :src="doImg(object.gid)"></router-link></div>
-                            <div class="good_desc"><router-link :to="{path: `/home/${object.gid}`}" class="link" :title="object.name">{{object.name}}</router-link></div>
+                        <li v-if="object.cid==2" :key="object.id">
+                            <div class="img"><router-link :to="{path: `/home/${object.id}`}"><img :src="doImg(object.img)" class="img"></router-link></div>
+                            <div class="good_desc"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">{{object.name}}</router-link></div>
                             <p class="intro">
                                 <span class="qgj">抢购价：</span><span class="price">{{object.price|price}}</span>
                                 <span class="sold">{{object.sold|sold}}</span>
@@ -48,9 +48,9 @@
                 <ul>
                     <h1>游戏</h1>
                     <template v-for="object in goods">
-                        <li v-if="object.cid==1" :key="object.gid">
-                            <div class="img"><router-link :to="{path: `/home/${object.gid}`}"><img :src="doImg(object.gid)"></router-link></div>
-                            <div class="good_desc"><router-link :to="{path: `/home/${object.gid}`}" class="link" :title="object.name">{{object.name}}</router-link></div>
+                        <li v-if="object.cid==3" :key="object.id">
+                            <div class="img"><router-link :to="{path: `/home/${object.id}`}"><img :src="doImg(object.img)" class="img"></router-link></div>
+                            <div class="good_desc"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">{{object.name}}</router-link></div>
                             <p class="intro">
                                 <span class="qgj">抢购价：</span><span class="price">{{object.price|price}}</span>
                                 <span class="sold">{{object.sold|sold}}</span>
@@ -74,8 +74,7 @@ export default {
             goods: [],
             img:[],
             search: '',
-            baseUrl: 'http://localhost:3000',
-            // baseUrl: 'http://172.18.44.25/',
+            // baseUrl: 'http://localhost:3000',
             // goodsDes: 'goods'
         }
     },
@@ -90,25 +89,24 @@ export default {
 
     computed:{
         doImg(){
-            return (gid) => {
-                return this.baseUrl+this.img
-                .find(item => {
-                    if(item.gid == gid)
-                        return item
-                }).main
-            }
+           return param=>{
+              return 'http://172.18.44.25:8888'+param;
+           }
         }
     },
 
     created(){
-        this.axios.get('/goods')
+        this.axios.get('/goodsImg')
         .then(res => {
-            this.goods = res.data
+            this.goods = res.data.list
+            console.log("goods")
+            console.log(this.goods)
         })
-        this.axios.get('/img')
-        .then(res =>{
-            this.img = res.data
-        })
+        // this.axios.get(this.baseUrl+'/img')
+        // .then(res =>{
+        //     this.img = res.data
+        //     console.log(this.data)
+        // })
     }
 }
 </script>

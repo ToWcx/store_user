@@ -1,10 +1,11 @@
 {
   "goods": [
     {
+      "cid": 1,
       "gid": 1,
       "name": "俏香阁 坚果炒货 休闲零食 果仁 烘焙紫皮腰果158g/袋",
       "descript": "这是腰果",
-      "price": 42.80,
+      "price": 42.8,
       "stock": 100,
       "sold": 22,
       "gtid": 1,
@@ -18,10 +19,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 2,
       "name": " 三只松鼠坚果炒货零食特产每日坚果开心果100g/袋",
       "descript": "这是开心果",
-      "price": 39.90,
+      "price": 39.9,
       "stock": 100,
       "sold": 22,
       "gtid": 1,
@@ -35,10 +37,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 3,
       "name": "良品铺子酥脆薄饼薄脆海苔咸饼干 盒装咸味零食小吃早餐休闲食品300g",
       "descript": "这是饼干",
-      "price": 14.90,
+      "price": 14.9,
       "stock": 100,
       "sold": 22,
       "gtid": 1,
@@ -52,10 +55,11 @@
       }
     },
     {
+      "cid": 2,
       "gid": 4,
       "name": "俏香阁 蜜饯果干 休闲零食 芒果干108g/袋",
       "descript": "这是蜜饯",
-      "price": 16.90,
+      "price": 16.9,
       "stock": 100,
       "sold": 22,
       "gtid": 1,
@@ -69,10 +73,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 5,
       "name": "三只松鼠肉干肉脯零食特产小吃麻辣卤味牛肉熟食孜香牛肚120g/袋",
       "descript": "这是果脯",
-      "price": 36.90,
+      "price": 36.9,
       "stock": 100,
       "sold": 22,
       "gtid": 1,
@@ -86,10 +91,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 6,
       "name": "好时之吻Kisses炫彩多口味巧克力 糖果零食婚庆婚庆喜糖散装500g",
       "descript": "这是巧克力",
-      "price": 49.80,
+      "price": 49.8,
       "stock": 100,
       "sold": 22,
       "gtid": 1,
@@ -103,10 +109,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 7,
       "name": " 德芙 Dove精心之选多种口味巧克力礼盒 糖果巧克力 礼品 圣诞节生日礼物280g",
       "descript": "这是德芙",
-      "price": 121.00,
+      "price": 121,
       "stock": 100,
       "sold": 22,
       "gtid": 1,
@@ -120,10 +127,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 8,
       "name": " 益达（Extra）尊享护齿 新年年货年糖 56g*3瓶京东定制装（草本精华+冰柠+清新西柚）",
       "descript": "这是你的益达",
-      "price": 25.50,
+      "price": 25.5,
       "stock": 100,
       "sold": 22,
       "gtid": 1,
@@ -137,10 +145,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 9,
       "name": "《老人与海》",
       "descript": "这是一本好书",
-      "price": 18.50,
+      "price": 18.5,
       "stock": 100,
       "sold": 22,
       "gtid": 2,
@@ -154,10 +163,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 10,
       "name": "《我的天才女友》",
       "descript": " 这是一本好书",
-      "price": 33.20,
+      "price": 33.2,
       "stock": 100,
       "sold": 22,
       "gtid": 2,
@@ -171,10 +181,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 11,
       "name": "《亦恕与珂雪》",
       "descript": " 这是一本好书",
-      "price": 21.40,
+      "price": 21.4,
       "stock": 100,
       "sold": 22,
       "gtid": 2,
@@ -188,10 +199,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 12,
       "name": "《平凡的世界》",
       "descript": " 这是一本好书",
-      "price": 39.80,
+      "price": 39.8,
       "stock": 100,
       "sold": 22,
       "gtid": 2,
@@ -205,10 +217,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 13,
       "name": "《人性的弱点》",
       "descript": "这是一本好书",
-      "price": 19.70,
+      "price": 19.7,
       "stock": 100,
       "sold": 22,
       "gtid": 2,
@@ -222,10 +235,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 14,
       "name": "《告白》",
       "descript": "这是一本好书",
-      "price": 25.40,
+      "price": 25.4,
       "stock": 100,
       "sold": 22,
       "gtid": 2,
@@ -239,10 +253,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 15,
       "name": "《经济学原理》",
       "descript": "这是一本好书",
-      "price": 54.00,
+      "price": 54,
       "stock": 100,
       "sold": 22,
       "gtid": 2,
@@ -256,10 +271,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 16,
       "name": "《蔡康永的情商课》",
       "descript": "这是一本好书",
-      "price": 31.50,
+      "price": 31.5,
       "stock": 100,
       "sold": 22,
       "gtid": 2,
@@ -273,10 +289,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 17,
       "name": "《暗黑血统2》",
       "descript": "好玩的游戏",
-      "price": 188.00,
+      "price": 188,
       "stock": 100,
       "sold": 22,
       "gtid": 3,
@@ -290,10 +307,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 18,
       "name": "《生化危机7》",
       "descript": "恐怖的游戏",
-      "price": 188.00,
+      "price": 188,
       "stock": 100,
       "sold": 22,
       "gtid": 3,
@@ -307,10 +325,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 19,
       "name": "《上古卷轴5》",
       "descript": "黑暗的游戏",
-      "price": 188.00,
+      "price": 188,
       "stock": 100,
       "sold": 22,
       "gtid": 3,
@@ -324,10 +343,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 20,
       "name": "《刺客信条：奥德赛》",
       "descript": "角色扮演的游戏",
-      "price": 188.00,
+      "price": 188,
       "stock": 100,
       "sold": 22,
       "gtid": 3,
@@ -341,10 +361,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 21,
       "name": "《古墓丽影：暗影》",
       "descript": "冒险的游戏",
-      "price": 188.00,
+      "price": 188,
       "stock": 100,
       "sold": 22,
       "gtid": 3,
@@ -358,10 +379,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 22,
       "name": "《绝地求生：大逃杀》",
       "descript": "多人游戏",
-      "price": 188.00,
+      "price": 188,
       "stock": 100,
       "sold": 22,
       "gtid": 3,
@@ -375,10 +397,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 23,
       "name": "《求生之路1》",
       "descript": "旧游戏",
-      "price": 188.00,
+      "price": 188,
       "stock": 100,
       "sold": 22,
       "gtid": 3,
@@ -392,10 +415,11 @@
       }
     },
     {
+      "cid": 1,
       "gid": 24,
       "name": "《尼尔：机械纪元》",
       "descript": "治愈的游戏",
-      "price": 188.00,
+      "price": 188,
       "stock": 100,
       "sold": 22,
       "gtid": 3,
@@ -407,6 +431,355 @@
         "img2": "img/game/1008_2.png",
         "img3": "img/game/1008_3.png"
       }
+    }
+  ],
+  "comments": [
+    {
+      "gid": 1,
+      "list": [
+        {
+          "nick": "1",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "2",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 2
+        },
+        {
+          "nick": "2",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 3
+        },
+        {
+          "nick": "4",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 4
+        },
+        {
+          "nick": "5",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "6",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 2
+        },
+        {
+          "nick": "7",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 5
+        },
+        {
+          "nick": "8",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 4
+        },
+        {
+          "nick": "9",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "10",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 3
+        },
+        {
+          "nick": "11",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "12",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "13",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 3
+        },
+        {
+          "nick": "14",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "15",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "16",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 2
+        },
+        {
+          "nick": "17",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 5
+        },
+        {
+          "nick": "18",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 5
+        },
+        {
+          "nick": "19",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 4
+        },
+        {
+          "nick": "20",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "21",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 4
+        },
+        {
+          "nick": "22",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 3
+        },
+        {
+          "nick": "23",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 4
+        },
+        {
+          "nick": "24",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 5
+        },
+        {
+          "nick": "25",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 5
+        }
+      ]
+    },
+    {
+      "gid": 2,
+      "list": [
+        {
+          "nick": "1",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "2",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 2
+        },
+        {
+          "nick": "2",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 3
+        },
+        {
+          "nick": "4",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 4
+        },
+        {
+          "nick": "5",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "6",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 2
+        },
+        {
+          "nick": "7",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 5
+        },
+        {
+          "nick": "8",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 4
+        },
+        {
+          "nick": "9",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "10",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 3
+        },
+        {
+          "nick": "11",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "12",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "13",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 3
+        },
+        {
+          "nick": "14",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "15",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "16",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 2
+        },
+        {
+          "nick": "17",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 5
+        },
+        {
+          "nick": "18",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 5
+        },
+        {
+          "nick": "19",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 4
+        },
+        {
+          "nick": "20",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 1
+        },
+        {
+          "nick": "21",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 4
+        },
+        {
+          "nick": "22",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 3
+        },
+        {
+          "nick": "23",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 4
+        },
+        {
+          "nick": "24",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 5
+        },
+        {
+          "nick": "25",
+          "time": "2019-5-23",
+          "content": "hahaha",
+          "star": 5
+        }
+      ]
+    }
+  ],
+  "address": [
+    {
+      "address": "广东省肇庆市端州区黄冈大道肇庆学院主校区",
+      "aid": 0,
+      "postcode": "525340",
+      "receiveName": "ruanyaolan",
+      "receivePhone": "1234567890",
+      "uid": 1,
+      "id": 1
+    },
+    {
+      "address": "广东省肇庆市端州区黄冈大道肇庆学院主校区",
+      "aid": 1,
+      "postcode": "525340",
+      "receiveName": "ruanyaolan",
+      "receivePhone": "1234567890",
+      "uid": 1,
+      "id": 2
+    },
+    {
+      "address": "广东省肇庆市端州区黄冈大道肇庆学院主校区",
+      "aid": 2,
+      "postcode": "525340",
+      "receiveName": "ruanyaolan",
+      "receivePhone": "1234567890",
+      "uid": 1,
+      "id": 3
+    },
+    {
+      "aid": 3,
+      "address": "规划更加辉煌国际",
+      "receiveName": "吴楚欣",
+      "receivePhone": "12345658",
+      "uid": 1,
+      "id": 4
     }
   ]
 }

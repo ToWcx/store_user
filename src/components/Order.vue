@@ -44,7 +44,7 @@
                   </ul>
                 </div>
                 <ul class="cart-item-list">
-                  <li v-for='(item,index) in productList'>
+                  <li v-for='(item,index) in productList' :key="index">
                     <div class="cart-tab-1">
                       <div class="cart-item-check">
                         <a href="javascript:void 0" class="item-check-btn" :class="{check:item.checked}" @click='selectedProduct(item)'>
@@ -60,7 +60,7 @@
                       <div class="item-include">
                         <dl>
                           <dt>赠送:</dt>
-                          <dd v-for='part in item.parts' v-text='part.partsName'></dd>
+                          <dd v-for='(part,index) in item.parts' v-text='part.partsName' :key="index"></dd>
                         </dl>
                       </div>
                     </div>
@@ -154,9 +154,10 @@ export default {
 </script>
 
 <style>
-    /* <link href="css/base.css" rel="stylesheet">
-    <link href="css/checkout.css" rel="stylesheet">
-    <link href="css/modal.css" rel="stylesheet"> */
+
+    @import '../assets/css/base.css';
+    /* @import '../assets/css/checkout.css'; */
+    @import '../assets/css/modal.css';
     .quantity input {
         width: 40px;
         padding: 5px 10px;
