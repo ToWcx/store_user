@@ -23,7 +23,7 @@
              mode="horizontal"
              @select="handleSelect"
              background-color="#eee">
-                <el-menu-item index="1"><a href="#">首页</a></el-menu-item>
+                <el-menu-item index="1"><router-link to="/Home">首页</router-link></el-menu-item>
             </el-menu>
         </div>
         <div class="fr">
@@ -51,7 +51,7 @@
                 <el-menu-item index="4"><a href="#">收藏夹</a></el-menu-item>
                 <el-submenu index="5">
                     <template slot="title">我的</template>
-                    <el-menu-item index="5-1">购物车</el-menu-item>
+                    <el-menu-item index="5-1"><router-link to="/GoodsDes">购物车</router-link></el-menu-item>
                     <el-menu-item index="5-2">地址</el-menu-item>
                     <el-menu-item index="5-3">个人信息</el-menu-item>
                 </el-submenu>
@@ -61,7 +61,7 @@
     </div>
 </template>
 
-<script>
+<script scoped>
 export default {
     name: 'dh',
     data() {

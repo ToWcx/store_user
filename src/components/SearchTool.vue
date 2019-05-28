@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     *{
         list-style: none;
         text-decoration: none;
