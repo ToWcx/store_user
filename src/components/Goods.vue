@@ -7,7 +7,7 @@
 				ref="multipleTable"
 				empty-text="暂无商品"
 				:data="cart_list"
-				selection-change="handleSelectionChange"
+				@selection-change="handleSelectionChange"
 				style="width: 100%">
 				<el-table-column type="expand">
 				<template slot-scope="props">
@@ -57,7 +57,7 @@
 				label="数量">
 					<template slot-scope="scope">
 						<div class="div_number">
-							<el-input-number :min="1" change="handleChange" size="mini" v-model="scope.row.count">
+							<el-input-number :min="1" @change="handleChange($event,scope.$index)" size="mini" v-model="scope.row.count">
 							</el-input-number>
 						</div>
                     </template>
@@ -78,7 +78,7 @@
 			</el-table>
 			<el-row>
 				<el-col :span="8">
-					<span style="font-size:12px">共 {{cart_list.length}}种商品，已选择 {{total_num}} 件</span>
+					<span style="font-size:12px">共 {{cart_list.length}}种商品，已选择 {{selectionNum.length}} 件</span>
 				</el-col>
 				<el-col :span="16">
 					合计： {{total_price}}元
@@ -98,59 +98,61 @@ export default {
           price: 49,
           name: '好滋好味鸡蛋仔',
           category: '江浙小吃、小吃零食',
-		  desc: '荷兰优质淡奶，奶香浓而不腻',
-		  count: 1,
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        }, {
-          price: 39,
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-		  count: 1,
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        }, {
-          price: 36,
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-		  count: 1,
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        }, {
-          price: 37,
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-		  count: 2,
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-		}],
-		check_list: [{
-          price: 36,
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-		  count: 1,
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        }, {
-          price: 37,
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-		  count: 2,
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-		}]
-      }
+					desc: '荷兰优质淡奶，奶香浓而不腻',
+					count: 1,
+							address: '上海市普陀区真北路',
+							shop: '王小虎夫妻店',
+							shopId: '10333'
+						}, {
+							price: 39,
+							name: '好滋好味鸡蛋仔',
+							category: '江浙小吃、小吃零食',
+							desc: '荷兰优质淡奶，奶香浓而不腻',
+					count: 1,
+							address: '上海市普陀区真北路',
+							shop: '王小虎夫妻店',
+							shopId: '10333'
+						}, {
+							price: 36,
+							name: '好滋好味鸡蛋仔',
+							category: '江浙小吃、小吃零食',
+							desc: '荷兰优质淡奶，奶香浓而不腻',
+					count: 1,
+							address: '上海市普陀区真北路',
+							shop: '王小虎夫妻店',
+							shopId: '10333'
+						}, {
+							price: 37,
+							name: '好滋好味鸡蛋仔',
+							category: '江浙小吃、小吃零食',
+							desc: '荷兰优质淡奶，奶香浓而不腻',
+					count: 2,
+							address: '上海市普陀区真北路',
+							shop: '王小虎夫妻店',
+							shopId: '10333'
+				}],
+				check_list: [{
+							price: 36,
+							name: '好滋好味鸡蛋仔',
+							category: '江浙小吃、小吃零食',
+							desc: '荷兰优质淡奶，奶香浓而不腻',
+					count: 1,
+							address: '上海市普陀区真北路',
+							shop: '王小虎夫妻店',
+							shopId: '10333'
+						}, {
+							price: 37,
+							name: '好滋好味鸡蛋仔',
+							category: '江浙小吃、小吃零食',
+							desc: '荷兰优质淡奶，奶香浓而不腻',
+					count: 2,
+							address: '上海市普陀区真北路',
+							shop: '王小虎夫妻店',
+							shopId: '10333'
+				}],
+				selectionNum:[],
+				// total_price:0
+			}
     },
 	components: {
         dh
@@ -159,33 +161,53 @@ export default {
 		// this.init()
 	},
 	computed: {
-		total_num : function () {
-			let num = 0
-			this.check_list.forEach((item)=>{
-				num += item.count
-			})
-			console.log(num)
-			return num
-		},
-		total_price : function () {
-			let sum_price = 0
-			this.check_list.forEach((item)=>{
-				sum_price += item.count*item.price
-				console.log(item+":"+sum_price)
-			})
-			console.log(sum_price)
-			return sum_price
+		// total_num : function () {
+		// 	let num = 0
+		// 	this.check_list.forEach((item)=>{
+		// 		num += item.count
+		// 	})
+		// 	console.log(num)
+		// 	return num
+		// },
+		// total_price : function () {
+		// 	let sum_price = 0
+		// 	this.check_list.forEach((item)=>{
+		// 		sum_price += item.count*item.price
+		// 		console.log(item+":"+sum_price)
+		// 	})
+		// 	console.log(sum_price)
+		// 	return sum_price
+		// }
+		total_price:function(){
+			if(this.selectionNum.length<=0){
+				return 0
+			}else{
+				var total=0;
+				this.selectionNum.forEach(item=>{
+						total=item.count*item.price+total
+						console.log("total")
+						console.log(total)
+				})
+				return total
+			}
 		}
 	},
 	methods: {
 		deleteRow(index, rows) {
 		rows.splice(index, 1);
 		},
+		//复选框变化，存储已选择项
 		handleSelectionChange:function (val) {
-			this.check_list = val
+			// this.check_list = val
+			this.selectionNum=val
+			console.log("Select")
+			console.log(this.selectionNum)
 		},
-		handleChange:function (val) {
+		//数量变化
+		handleChange:function (val,index) {
+			console.log("Num")
 			console.log(val)
+			console.log(this.cart_list[index].price)
 		},
 		getCartList(){
 			this.axios.get('/cart_list')

@@ -3,7 +3,7 @@
      <el-select v-model="provice" placeholder="请选择">
             <el-option
               v-for="item in Provice"
-              :key="item.proviceName"
+              :key="item.proviceId"
               :label="item.proviceName"
               :value="item.proviceId"> 
               
@@ -46,6 +46,7 @@
 </el-form-item>
 </template>
 <script>
+
 export default {
     data() {
         return {
@@ -59,9 +60,11 @@ export default {
             county:"",
             town:"",
             village:"",
+            Address:""
         }
     },
     created(){
+      // this.axios.get("http://localhost:3000/position")
         this.axios.get("/auth/position")
       .then(res => {
         this.Provice = res.data.list
@@ -70,41 +73,83 @@ export default {
     },
     watch: {
         "provice":function(val,Old){
+            this.Provice.find(item=>{
+                if(item.proviceId===val){
+                  this.provice=item.proviceName
+                }
+              })
              this.axios.get("/auth/position?provice="+val)
              .then(res=>{
                  this.City=res.data.list
+                 this.Address=this.provice+this.city+this.county+this.town+this.village
+                 this.$emit("addressByChild",this.Address)
+
              })
              .catch(err=>{
                
              })
         },
         "city":function(val,OldVal){
+          this.City.find(item=>{
+                if(item.cityId===val){
+                   this.city=item.cityName
+                }
+              })
           this.axios.get("/auth/position?city="+val)
              .then(res=>{
                  this.County=res.data.list
+                 this.Address=this.provice+this.city+this.county+this.town+this.village
+                 this.$emit("addressByChild",this.Address)
              })
              .catch(err=>{
                
              })
         },
         "county":function(val,OldVal){
+          this.County.find(item=>{
+                if(item.countyId===val){
+                   this.county=item.countyName
+                }
+              })
           this.axios.get("/auth/position?county="+val)
              .then(res=>{
                  this.Town=res.data.list
+                 this.Address=this.provice+this.city+this.county+this.town+this.village
+                 this.$emit("addressByChild",this.Address)
              })
              .catch(err=>{
                
              })
         },
         "town":function(val,OldVal){
+           this.Town.find(item=>{
+                if(item.townId===val){
+                   this.town=item.townName
+                }
+              })
           this.axios.get("/auth/position?town="+val)
              .then(res=>{
                  this.Village=res.data.list
+                 this.Address=this.provice+this.city+this.county+this.town+this.village
+                 this.$emit("addressByChild",this.Address)
              })
              .catch(err=>{
                
              })
         },
+        "village":function(val,OldVal){
+           this.Village.find(item=>{
+                if(item.villageId===val){
+                   this.village=item.villageName
+                }
+              })
+          this.Address=this.provice+this.city+this.county+this.town+this.village
+          this.$emit("addressByChild",this.Address)
+        }
+  },
+  methods: {
+   
+
   },
 }
 </script>

@@ -25,10 +25,7 @@
           <el-form-item label="手机号码" >
             <el-input v-model="form.receivePhone" autocomplete="off"></el-input>
           </el-form-item>
-          <!-- <el-form-item label="收货地址" >
-            <el-input v-model="form.address" autocomplete="off"></el-input>
-          </el-form-item> -->
-              <addressOptions></addressOptions>
+              <addressOptions v-on:addressByChild="addressByChild"></addressOptions>
           <el-switch
             v-model="Default"
             inactive-text="设为默认地址">
@@ -102,8 +99,8 @@ export default {
         // this.address=res.data.list
       }),
       this.axios.put("/auth",{
-        "name":"root",
-        "passwd":"root"
+        "name":"RYL",
+        "passwd":"RYL"
       })
       .then(res=>{
         console.log(res.data)
@@ -132,12 +129,11 @@ export default {
     add_submit(){
       //添加新地址
       if(this.operation==="add"){
-           this.axios.post("http://localhost:3000/address",
+           this.axios.post("/auth/address",
             {
-                "address":this.form.address,
+                "name":this.form.address,
                 "receiveName":this.form.receiveName,
                 "receivePhone":this.form.receivePhone,
-                "uid":1
             }
             )
             .then(res=>{
@@ -150,6 +146,7 @@ export default {
             .catch(err=>{
               this.$message.error('添加失败，请重试！');
             })
+          // alert(this.form.address)
       }else if(this.operation==="edit"){//修改地址
         this.axios.put("http://localhost:3000/address?aid="+this.address[this.index].aid,
             {
@@ -174,6 +171,9 @@ export default {
             })
       }
      
+    },
+    addressByChild(childValue){
+       this.form.address=childValue
     }
 
 
