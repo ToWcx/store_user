@@ -131,8 +131,10 @@ export default {
 </script>
 
 <style scoped>
+  body {
+    overflow-y: scroll;
+  }
   
-  body { overflow-y: scroll; }
   *{
     list-style: none;
     text-decoration: none;
@@ -183,6 +185,11 @@ export default {
       max-width: 1080px;
       margin: 0 auto;
   }
+  .head {
+        height: 157.5px;
+        width: 100%;
+        /* border: 1px solid black; */
+    }
   /* 搜索 */
 
   .img {

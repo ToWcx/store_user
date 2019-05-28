@@ -21,7 +21,7 @@
 			<a class="toolbar_goods" href="#toolbar_yx" rel="nofollow">游戏</a>
 		</div>
 		<div class="toolbar_cart">
-			<a class="toolbar_goods" href="#">购物车</a>
+            <router-link class="toolbar_goods" to="/GoodsDes">购物车</router-link>
 		</div>
 		<div id="top" class="">
 			<a href="#" class="fhdb">返回顶部</a>
