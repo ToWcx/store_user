@@ -45,15 +45,15 @@
                         <router-link to="/Login">退出</router-link>    
                     </span>
                     <span v-else>
-                        <router-link to="/Login">注册</router-link>                
+                        <router-link to="/Regist">注册</router-link>                
                     </span>
                 </el-menu-item>
-                <el-menu-item index="4"><a href="#">收藏夹</a></el-menu-item>
+                <!-- <el-menu-item index="4"><a href="#">收藏夹</a></el-menu-item> -->
                 <el-submenu index="5">
-                    <template slot="title">我的</template>
+                    <template slot="title"> <i class="el-icon-menu"></i> </template>
                     <el-menu-item index="5-1"><router-link to="/GoodsDes">购物车</router-link></el-menu-item>
                     <el-menu-item index="5-2">地址</el-menu-item>
-                    <el-menu-item index="5-3">个人信息</el-menu-item>
+                    <el-menu-item index="5-3">订单</el-menu-item>
                 </el-submenu>
             </el-menu>
         </div>
@@ -104,6 +104,12 @@ export default {
         color: #dd182b;
     }
 
+    .el-menu--horizontal .el-menu .el-menu-item{
+        color: #424242;
+    }
+    .el-submenu__title i{
+        color: #424242;
+    }
     .fl {
         float: left;
     }

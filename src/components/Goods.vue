@@ -1,9 +1,8 @@
 <template>
-	<!-- <div class="body-bg"> -->
 	<el-scrollbar>
 		<dh></dh>
 		<div class="container">
-			<h4>购物车</h4>
+			<h4>购物车<i class="el-icon-goods"></i></h4>
 			<el-table
 				height="450"
 				ref="multipleTable"
@@ -48,6 +47,10 @@
 				prop="name">
 				</el-table-column>
 				<el-table-column
+				label="商品图片"
+				prop="img">
+				</el-table-column>
+				<el-table-column
 				label="描述"
 				prop="desc">
 				</el-table-column>
@@ -88,7 +91,6 @@
 				</el-col>
 			</el-row>
 		</div>
-	<!-- </div> -->
 	</el-scrollbar>
 </template>
 
@@ -100,6 +102,7 @@ export default {
         cart_list: [{
 			price: 49,
 			name: '好滋好味鸡蛋仔',
+			// img: URL('../assets/img/2001.jpg'),
 			category: '江浙小吃、小吃零食',
 			desc: '荷兰优质淡奶，奶香浓而不腻',
 			count: 1,
@@ -338,7 +341,15 @@ export default {
         max-width: 1080px;
         margin: 0 auto;
         /* border: 1px solid black; */
-    }
+	}
+	.container h4{
+		font-family: Arial, Helvetica, sans-serif;
+		font-weight: 700px;
+		font-size: 18px;
+		margin-top: 30px;
+		margin-bottom: 20px;
+		color: #424242;
+	}
 	/* 引入样式 */
 	.demo-table-expand {
 		font-size: 0;

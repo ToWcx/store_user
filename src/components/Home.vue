@@ -198,11 +198,6 @@ export default {
 </script>
 
 <style scoped>
-    *{
-        list-style: none;
-        text-decoration: none;
-        color: #424242;
-    }
     /* .body-bg {
         position: absolute;
         width: 100%;
@@ -212,6 +207,11 @@ export default {
         overflow-y: auto;
         background-color: #f5f5f5;
     } */
+    *{
+        list-style: none;
+        text-decoration: none;
+        color: #424242;
+    }
     .container {
         max-width: 1080px;
         margin: 0 auto;
@@ -383,8 +383,5 @@ export default {
         color: #424242;
         font-size: 0;
         border: 1px solid #dd182b;
-    }
-    .el-scrollbar{
-        background-color: #f5f5f5;
     }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="container" style="height:97.5px">
-                <img src="../assets/img/logo2.png" alt="" class="logo">
+                <img src="../assets/img/logo.jpg" alt="" class="logo">
                 <div class="search-center">
                     <div class="search">
                         <el-input v-model="input" placeholder="请输入内容" id="search"></el-input>

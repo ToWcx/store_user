@@ -9,6 +9,8 @@ const Order = () => import('@/components/Order')
 const Address = () => import('@/components/Address')
 const Lbt = () => import('@/components/Lbt')
 const Head = () => import('@/components/Head')
+const Regist = () => import('@/components/Regist')
+const Test = () => import('@/components/Test')
 
 
 Vue.use(Router)
@@ -46,6 +48,12 @@ const router = new Router({
     }, {
       path: '/head',
       component: Head
+    }, {
+      path: '/regist',
+      component: Regist
+    }, {
+      path: '/test',
+      component: Test
     }, {
       path: '/order',
       component: Order,
