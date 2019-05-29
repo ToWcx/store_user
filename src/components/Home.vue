@@ -1,6 +1,6 @@
 <template>
  <el-scrollbar>
-    <div class="body-bg">
+    <!-- <div class="body-bg"> -->
     <!-- <div class="container"> -->
         <div class="head">
             <dh></dh>
@@ -91,8 +91,8 @@
                 </ul>
             </div>
         </div>
-    </div>
-    </div>
+        </div>
+        <!-- </div> -->
     </el-scrollbar>
 </template>
 
@@ -198,15 +198,6 @@ export default {
 </script>
 
 <style scoped>
-    *{
-        list-style: none;
-        text-decoration: none;
-        color: #424242;
-        
-    }
-    .el-scrollbar__wrap{
-        background-color: #f5f5f5;
-    }
     /* .body-bg {
         position: absolute;
         width: 100%;
@@ -216,7 +207,11 @@ export default {
         overflow-y: auto;
         background-color: #f5f5f5;
     } */
-    html { overflow-x: hidden; overflow-y: auto; }
+    *{
+        list-style: none;
+        text-decoration: none;
+        color: #424242;
+    }
     .container {
         max-width: 1080px;
         margin: 0 auto;
