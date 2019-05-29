@@ -82,7 +82,7 @@
 				</el-col>
 				<el-col :span="16">
 					合计： {{total_price}}元
-				<el-button type="primary">去结算</el-button>
+				<el-button type="primary" @click="settle">去结算</el-button>
 				</el-col>
 			</el-row>
 		</div>
@@ -202,12 +202,16 @@ export default {
 			this.selectionNum=val
 			console.log("Select")
 			console.log(this.selectionNum)
+			localStorage.setItem("selection",JSON.stringify(this.selectionNum))
+			// console.log("localstorege")
+			// console.log(JSON.parse(localStorage.getItem("selection")))
 		},
 		//数量变化
 		handleChange:function (val,index) {
 			console.log("Num")
 			console.log(val)
 			console.log(this.cart_list[index].price)
+			
 		},
 		getCartList(){
 			this.axios.get('/cart_list')
@@ -215,11 +219,29 @@ export default {
 				this.cart_list = res.data.cart_list
 			})
 		},
-		getCheckList(){
-			this.axios.get('/check_list')
-			.then(res =>{
-				this.check_list = res.data.check_list
-			})
+		//???
+		// getCheckList(){
+		// 	this.axios.get('/check_list')
+		// 	.then(res =>{
+		// 		this.check_list = res.data.check_list
+		// 	})
+		// },
+		//点击结算，去到结算页面
+		settle(){
+		//    console.log("price")
+		//    console.log(this.total_price)
+			if(this.total_price<=0){
+				 this.$message({
+					message: '请选择商品',
+					type: 'warning'
+				});
+			}else{
+				localStorage.setItem("total_price", this.total_price.toString())
+				// console.log(localStorage.getItem("total_price"))
+				this.$router.push({name:"settlement"})
+
+				// this.$router.push({name:"settlement",query:{selectList:this.selectionNum,total_price:this.total_price}})
+			}
 		}
     }
     // export default {

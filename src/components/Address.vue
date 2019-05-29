@@ -5,7 +5,7 @@
           <span>我的收货地址</span>
           <el-button style="float: right; padding: 3px 0" type="text" @click="add">添加新地址</el-button>
         </div>
-        <div v-for="(item,index) in address" :key="index" class="text item">
+        <div v-for="(item,index) in address" :key="index" class="text item" @click="getAdress(item)">
             <span>{{item.receiveName}}</span>
             <span>{{item.receivePone}}</span>
             <!-- <span style="float:right;margin-left:20px"><el-link icon="el-icon-delete" @click.native.prevent="cancel(index)"></el-link></span> -->
@@ -93,7 +93,8 @@ export default {
   },
   created(){
     //  this.axios.get("/user/address?name=root")
-      this.axios.get("/auth/address")
+    this.axios.get("http://localhost:3000/address")
+      // this.axios.get("/auth/address")
       .then(res=>{
         this.address=res.data
         // this.address=res.data.list
@@ -174,8 +175,14 @@ export default {
     },
     addressByChild(childValue){
        this.form.address=childValue
+    },
+    //在结算时选择地址传给结算页面
+    getAdress(address){
+      if(this.$route.query.select){
+          localStorage.setItem("address",JSON.stringify(address))
+          this.$router.push({name:'settlement'})
+      }
     }
-
 
   }
 }
@@ -188,10 +195,12 @@ export default {
 }
 .text {
     font-size: 14px;
+    cursor: pointer;
   }
 
   .item {
     margin-bottom: 18px;
+    cursor: pointer;
   }
 
 </style>

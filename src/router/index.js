@@ -9,7 +9,7 @@ const Order = () => import('@/components/Order')
 const Address = () => import('@/components/Address')
 const Lbt = () => import('@/components/Lbt')
 const Head = () => import('@/components/Head')
-
+const Settlement=()=>import('@/components/settlement')
 
 Vue.use(Router)
 
@@ -37,7 +37,13 @@ const router = new Router({
     },{
       path: '/goodsDes',
       component: Goods
-    }, {
+    }, 
+    {
+      path: '/settlement',
+      name:'settlement',
+      component: Settlement
+    },
+    {
       path: '/search',
       component: Search
     }, {
@@ -54,6 +60,7 @@ const router = new Router({
       }
     }, {
       path: '/address',
+      name:"address",
       component: Address,
       meta: {
         requiresAuth: false

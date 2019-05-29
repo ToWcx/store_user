@@ -408,5 +408,27 @@
         "img3": "img/game/1008_3.png"
       }
     }
+  ],
+  "address":[
+    {
+      "receiveName":"阮尧岚",
+      "receivePone":"13556512184",
+      "address":"这次阿斯弗十点十分低级"
+    },
+    {
+      "receiveName":"吴楚欣",
+      "receivePone":"13556512184",
+      "address":"这次阿斯弗十点十分低级"
+    },
+    {
+      "receiveName":"zhangshanrui",
+      "receivePone":"1111111",
+      "address":"这次阿斯弗十点十分低级"
+    },
+    {
+      "receiveName":"songyiyun",
+      "receivePone":"1111111",
+      "address":"这次阿斯弗十点十分低级"
+    }
   ]
 }
