@@ -13,7 +13,8 @@ Vue.use(VueAxios, axios)
 Vue.use(ElementUI)
 
 axios.defaults.withCredentials=true
-axios.defaults.baseURL="http://172.18.44.25:8888"
+// axios.defaults.baseURL="http://172.18.44.25:8888"
+axios.defaults.baseURL = '/api'
 
 new Vue({
   router,

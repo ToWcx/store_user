@@ -2,7 +2,7 @@
 	<div class="body-bg">
 		<dh></dh>
 		<div class="container">
-			<h4>购物车</h4>
+			<h4>订单</h4>
 			<el-table
 				ref="multipleTable"
 				empty-text="暂无商品"

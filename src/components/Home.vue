@@ -21,7 +21,8 @@
 			<a class="toolbar_goods" href="#toolbar_yx" rel="nofollow">游戏</a>
 		</div>
 		<div class="toolbar_cart">
-            <router-link class="toolbar_goods" to="/GoodsDes">购物车</router-link>
+            <span class="toolbar_goods" @click="checkLogin">购物车</span>
+            <!-- <router-link class="toolbar_goods" to="/GoodsDes">购物车</router-link> -->
 		</div>
 		<div id="top" class="">
 			<a href="#" class="fhdb">返回顶部</a>
@@ -147,6 +148,14 @@ export default {
         }
     },
     methods:{
+         checkLogin(){
+             
+            if(localStorage.getItem("item")===null){
+                this.$router.push({name:'login'})
+            }else{
+                this.$router.push({name:'goodsDes'})
+            }
+        },
     doLike(){
         if(this.like==''){
             if(this.selected === 0){
@@ -351,6 +360,8 @@ export default {
 
     .toolbar_goods{
         height: 35px;
+        color: white;
+        cursor: pointer;
     }
 
     .toolbar_cart a {

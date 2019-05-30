@@ -9,13 +9,13 @@ const Order = () => import('@/components/Order')
 const Address = () => import('@/components/Address')
 const Lbt = () => import('@/components/Lbt')
 const Head = () => import('@/components/Head')
-<<<<<<< HEAD
+// <<<<<<< HEAD
 const Settlement=()=>import('@/components/settlement')
-=======
+// =======
 const Regist = () => import('@/components/Regist')
 const Test = () => import('@/components/Test')
 
->>>>>>> 8e1940e511d2a4813d2d1a0e2141896bd0becae3
+// >>>>>>> 8e1940e511d2a4813d2d1a0e2141896bd0becae3
 
 Vue.use(Router)
 
@@ -31,6 +31,7 @@ const router = new Router({
       component: HelloWorld
     }, {
       path: '/login',
+      name:'login',
       component: Login
     }, {
       path: '/home',
@@ -42,6 +43,7 @@ const router = new Router({
       props: true
     },{
       path: '/goodsDes',
+      name:'goodsDes',
       component: Goods
     }, 
     {
@@ -66,6 +68,7 @@ const router = new Router({
       component: Test
     }, {
       path: '/order',
+      name:'order',
       component: Order,
       meta: {
         requiresAuth: false

@@ -7,12 +7,12 @@
         </div>
         <div v-for="(item,index) in address" :key="index" class="text item" @click="getAdress(item)">
             <span>{{item.receiveName}}</span>
-            <span>{{item.receivePone}}</span>
+            <span>{{item.receivePhone}}</span>
             <!-- <span style="float:right;margin-left:20px"><el-link icon="el-icon-delete" @click.native.prevent="cancel(index)"></el-link></span> -->
             <span style="float:right;margin-left:20px"><el-link icon="el-icon-edit" @click.native.prevent="edit(index)"></el-link></span>          
         <div>
             <el-tag type="danger">默认</el-tag>
-            {{item.address}}
+            {{item.name}}
           </div>
           
         </div>
@@ -92,20 +92,20 @@ export default {
     }
   },
   created(){
-    //  this.axios.get("/user/address?name=root")
-    this.axios.get("http://localhost:3000/address")
+     this.axios.get("/authAddress")
+    // this.axios.get("http://localhost:3000/address")
       // this.axios.get("/auth/address")
       .then(res=>{
-        this.address=res.data
-        // this.address=res.data.list
-      }),
-      this.axios.put("/auth",{
-        "name":"RYL",
-        "passwd":"RYL"
+        // this.address=res.data
+        this.address=res.data.list
       })
-      .then(res=>{
-        console.log(res.data)
-      })
+      // this.axios.put("/auth",{
+      //   "name":"RYL",
+      //   "passwd":"RYL"
+      // })
+      // .then(res=>{
+      //   console.log(res.data)
+      // })
 
       
   },
@@ -130,7 +130,7 @@ export default {
     add_submit(){
       //添加新地址
       if(this.operation==="add"){
-           this.axios.post("/auth/address",
+           this.axios.post("/authAddress",
             {
                 "name":this.form.address,
                 "receiveName":this.form.receiveName,
@@ -149,7 +149,7 @@ export default {
             })
           // alert(this.form.address)
       }else if(this.operation==="edit"){//修改地址
-        this.axios.put("http://localhost:3000/address?aid="+this.address[this.index].aid,
+        this.axios.put("/authAddress",
             {
                 "address":this.form.address,
                 "receiveName":this.form.receiveName,

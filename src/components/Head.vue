@@ -33,27 +33,44 @@
              @select="handleSelect"
              background-color="#eee">
                 <el-menu-item index="2">
-                    <span v-if="this.$store.state.count != 0">
-                        {{this.$store.state.count}}
-                    </span>
-                    <span v-else>
+                      <span v-if="count===null">
                         <router-link to="/Login">登录</router-link>                
                     </span>
+                    <span v-else>
+                        {{count}}
+                    </span>
+                    <!-- <span v-if="count!== null">
+                        {{count }}
+                    </span> -->
+                    <!-- <span v-else>
+                        <router-link to="/Login">登录</router-link>                
+                    </span> -->
                 </el-menu-item>
                 <el-menu-item index="3">
-                    <span v-if="this.$store.state.count != 0">
+
+                    <!-- <span v-if="this.$store.state.count != 0">
                         <router-link to="/Login">退出</router-link>    
-                    </span>
-                    <span v-else>
+                    </span> -->
+                    <!-- <span v-if="localStorage.getItem('count') !== null">
+                        <router-link to="/Login">退出</router-link>    
+                    </span> -->
+                    <!-- <span v-else>
                         <router-link to="/Regist">注册</router-link>                
+                    </span> -->
+                    <span v-if="count===null">
+                        <router-link to="/Regist">注册</router-link>                
+                    </span>
+                    <span @click="exit" v-else >
+                        <!-- <router-link>退出</router-link>                 -->
+                        退出 
                     </span>
                 </el-menu-item>
                 <!-- <el-menu-item index="4"><a href="#">收藏夹</a></el-menu-item> -->
                 <el-submenu index="5">
                     <template slot="title"> <i class="el-icon-menu"></i> </template>
-                    <el-menu-item index="5-1"><router-link to="/GoodsDes">购物车</router-link></el-menu-item>
-                    <el-menu-item index="5-2">地址</el-menu-item>
-                    <el-menu-item index="5-3">订单</el-menu-item>
+                    <el-menu-item index="5-1"><span @click="checkLogin('goodsDes')">购物车</span></el-menu-item>
+                    <el-menu-item index="5-2"><span @click="checkLogin('address')">地址</span></el-menu-item>
+                    <el-menu-item index="5-3"><span @click="checkLogin('order')">订单</span></el-menu-item>
                 </el-submenu>
             </el-menu>
         </div>
@@ -66,14 +83,37 @@ export default {
     name: 'dh',
     data() {
       return {
-        activeIndex: '1'
+        activeIndex: '1',
+        count:""
       };
     },
     methods:{
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
+        },
+        exit(){
+            localStorage.removeItem("count")
+            this.$router.push({name:'login'})
+        },
+        checkLogin(type){
+            if(this.count===null){
+                this.$router.push({name:'login'})
+            }else{
+                if(type==="goodsDes"){
+                   this.$router.push({name:'goodsDes'})
+                }else if(type==="address"){
+                   this.$router.push({name:'address'})
+                }else if(type==="order"){
+                  this.$router.push({name:'order'})
+                }
+            }
         }
-    }
+    },
+    created(){
+        this.count=localStorage.getItem("count")
+        console.log(this.count)
+    },
+    
 }
 </script>
 

@@ -65,7 +65,7 @@ export default {
     },
     created(){
       // this.axios.get("http://localhost:3000/position")
-        this.axios.get("/auth/position")
+        this.axios.get("/authPosition")
       .then(res => {
         this.Provice = res.data.list
       })
@@ -78,7 +78,7 @@ export default {
                   this.provice=item.proviceName
                 }
               })
-             this.axios.get("/auth/position?provice="+val)
+             this.axios.get("/authPosition?provice="+val)
              .then(res=>{
                  this.City=res.data.list
                  this.Address=this.provice+this.city+this.county+this.town+this.village
@@ -95,7 +95,7 @@ export default {
                    this.city=item.cityName
                 }
               })
-          this.axios.get("/auth/position?city="+val)
+          this.axios.get("/authPosition?city="+val)
              .then(res=>{
                  this.County=res.data.list
                  this.Address=this.provice+this.city+this.county+this.town+this.village
@@ -111,7 +111,7 @@ export default {
                    this.county=item.countyName
                 }
               })
-          this.axios.get("/auth/position?county="+val)
+          this.axios.get("/authPosition?county="+val)
              .then(res=>{
                  this.Town=res.data.list
                  this.Address=this.provice+this.city+this.county+this.town+this.village
@@ -127,7 +127,7 @@ export default {
                    this.town=item.townName
                 }
               })
-          this.axios.get("/auth/position?town="+val)
+          this.axios.get("/authPosition?town="+val)
              .then(res=>{
                  this.Village=res.data.list
                  this.Address=this.provice+this.city+this.county+this.town+this.village

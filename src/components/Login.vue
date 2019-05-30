@@ -2,21 +2,21 @@
     <div class="wrap">
         <div class="container">
             <div class="login-box">
-                <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
+                <el-form :model="form" ref="form" status-icon :rules="rules2" label-width="100px" class="demo-ruleForm">
                 <div class="login-item"> <span class="login-title">账户登录</span> </div>
                 <div class="login-item">
-                    <el-form-item label="账号" label-width="50px">
-                    <el-input auto-complete="true" v-model="name"></el-input>
+                    <el-form-item label="账号" label-width="60px" prop="name">
+                    <el-input auto-complete="true" v-model="form.name"></el-input>
                     </el-form-item>
                 </div>
                 <div class="login-item">
-                    <el-form-item label="密码" label-width="50px">
-                    <el-input type="password" v-model="passwd" auto-complete="off"></el-input>
+                    <el-form-item label="密码" label-width="60px" prop="passwd">
+                    <el-input type="password" v-model="form.passwd" auto-complete="off"></el-input>
                     </el-form-item>
                 </div>
                 <div class="login-item">
                     <el-form-item label-width="0px">
-                        <el-button type="primary" @click="login()">登录</el-button>
+                        <el-button type="primary" @click="login(form)">登录</el-button>
                     </el-form-item>
                 </div>
                 <div class="register">
@@ -52,27 +52,49 @@
 export default {
     data() {
         return {
-            name:"",
-            passwd:"",
-            state:""
+            form:{
+               name:"",
+               passwd:"",
+            },
+            
+            state:"",
+            rules2:{
+                name:[
+                    {required: true, message: '请输入用户名', trigger: 'blur' }
+                ],
+                passwd:[
+                    {required: true, message: '请输入密码', trigger: 'blur'}
+                ]
+            }
         }
     },
     methods:{
-        login(){
-            // this.$router.replace('/home')
-            this.axios.put("/auth",{
-                name: this.name,
-                passwd: this.passwd
-            }).then(res => {
-                // this.state;
-                if(res.data.code == 5) {
-                    this.$store.commit('login',this.name)
-                    this.$router.push({ path:'/home'  })
-                    alert("登录成功")
-                }else if(res.data.code == 6){
-                    alert("账号或密码有误！");
-                }
-            })
+        login(form){
+            //  localStorage.removeItem("count")
+            this.$refs.form.validate((valid) => {
+          if (valid) {
+            //   localStorage.setItem("count",this.form.name)
+            //     this.$router.push({ path:'/home'  })
+                this.$router.replace('/home')
+                this.axios.put("/beforeAuth",{
+                    name: this.form.name,
+                    passwd: this.form.passwd
+                }).then(res => {
+                    // this.state;
+                    if(res.data.code == 0) {
+                        localStorage.setItem("count",this.form.name)
+                        // this.$store.commit('login',this.form.name)
+                        this.$router.push({ path:'/home'  })
+                        alert("登录成功")
+                    }else if(res.data.code == 1){
+                        alert("账号或密码有误！");
+                    }
+                })
+          } else {
+            return false;
+          }
+        });
+           
         }
     }
 }
