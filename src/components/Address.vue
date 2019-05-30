@@ -83,7 +83,7 @@ export default {
     var checkName = (rule, value, callback) => {
       const NameReg = /^[\u4e00-\u9fa5]{2,3}$/
         if (!value) {
-        return callback(new Error('请输入用户名'));
+        return callback(new Error('请输入收货人姓名'));
         }
         setTimeout(() => {
         if (NameReg.test(value)) {
@@ -96,7 +96,7 @@ export default {
     var checkPhone = (rule, value, callback) => {
       const PhoneReg = /^1[34578]\d{9}$/
         if (!value) {
-        return callback(new Error('请输入昵称'));
+        return callback(new Error('手机号码不能为空'));
         }
         setTimeout(() => {
         if (PhoneReg.test(value)) {
