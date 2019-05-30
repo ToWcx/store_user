@@ -85,9 +85,9 @@ export default {
                         localStorage.setItem("count",this.form.name)
                         // this.$store.commit('login',this.form.name)
                         this.$router.push({ path:'/home'  })
-                        alert("登录成功")
+                        // alert(res.data.code +"name:" + this.form.name +"passwd:"+this.form.passwd)
                     }else if(res.data.code == 1){
-                        alert("账号或密码有误！");
+                        alert("登录失败，用户名或密码错误");
                     }
                 })
           } else {

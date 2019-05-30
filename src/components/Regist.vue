@@ -9,6 +9,11 @@
             </el-form-item>
         </div>
         <div class="regist-item">
+            <el-form-item prop="nick" label-width="0px">
+                <el-input type="text" v-model="ruleForm.nick" placeholder="昵称"></el-input>
+            </el-form-item>
+        </div>
+        <div class="regist-item">
             <el-form-item prop="email" label-width="0px">
                 <el-input type="text" v-model="ruleForm.email" placeholder="邮箱"></el-input>
             </el-form-item>
@@ -24,10 +29,10 @@
             </el-form-item>
         </div>
         <div class="regist-item">
-                    <el-form-item label-width="0px">
-                        <el-button type="primary" @click="regist()">注册</el-button>
-                    </el-form-item>
-                </div>
+            <el-form-item label-width="0px">
+                <el-button type="primary" @click="regist()">注册</el-button>
+            </el-form-item>
+        </div>
         <p class="change_link" align="center">
         <span class="text">已有账号 ?</span>
         <a href="/Login" class="toLogin">前往登录</a>
@@ -53,8 +58,21 @@
   export default {
     data() {
         var checkName = (rule, value, callback) => {
+          const NameReg = /^[A-Za-z]+$/
             if (!value) {
             return callback(new Error('请输入用户名'));
+            }
+            setTimeout(() => {
+            if (NameReg.test(value)) {
+                callback()
+            } else {
+                callback(new Error('用户名只能为纯英文'))
+            }
+            }, 100)
+        };
+        var checkNick = (rule, value, callback) => {
+            if (!value) {
+            return callback(new Error('请输入昵称'));
             }
             callback();
         };
@@ -97,11 +115,14 @@
             email: '',
             passwd: '',
             checkPass: '',
-            
+            nick: '',
             },
             rules: {
             name: [
                 { validator: checkName, trigger: 'blur' }
+            ],
+            nick: [
+                { validator: checkNick, trigger: 'blur' }
             ],
             email: [
                 { validator: checkEmail, trigger: 'blur' }
@@ -116,21 +137,21 @@
         }
     },
     methods:{
-        login(){
-            // this.$router.replace('/home')
-            this.axios.put("/auth",{
+        regist(){
+            this.axios.post("/user",{
                 name: this.name,
+                nick: this.nick,
+                email: this.email,
                 passwd: this.passwd
-            }).then(res => {
-                // this.state;
-                if(res.data.code == 5) {
-                    this.$store.commit('login',this.name)
-                    this.$router.push({ path:'/home'  })
-                    alert("登录成功")
-                }else if(res.data.code == 6){
-                    alert("账号或密码有误！");
-                }
+
+            }).then((response) => {
+              alert("注册成功");
+              this.postData = response.data;
             })
+            .catch(function (error) {
+              alert("注册失败");
+            });
+
         },
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
@@ -258,7 +279,7 @@
       z-index: -8;
       border-radius: 50%;
       background-color:rgba(255, 255, 255, 0.15);
-      animotion: square 25s infinite;
+      animation: square 25s infinite;
       -webkit-animation: square 25s infinite;
     }
     .wrap ul li:nth-child(1) {
