@@ -139,19 +139,18 @@
     methods:{
         regist(){
             this.axios.post("/user",{
-                name: this.name,
-                nick: this.nick,
-                email: this.email,
-                passwd: this.passwd
+                name: this.ruleForm.name,
+                nick: this.ruleForm.nick,
+                email: this.ruleForm.email,
+                passwd: this.ruleForm.passwd
 
             }).then((response) => {
-              alert("注册成功");
-              this.postData = response.data;
+              localStorage.setItem("count",this.ruleForm.name)
+              this.$router.push({ path:'/home'  })
             })
             .catch(function (error) {
               alert("注册失败");
             });
-
         },
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
