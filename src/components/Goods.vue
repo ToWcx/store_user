@@ -10,46 +10,18 @@
 				:data="cart_list"
 				@selection-change="handleSelectionChange"
 				style="width: 100%">
-				<el-table-column type="expand">
-				<template slot-scope="props">
-					<el-form label-position="left" inline class="demo-table-expand">
-					<el-form-item label="商品名称">
-						<span>{{ props.row.name }}</span>
-					</el-form-item>
-					<el-form-item label="所属店铺">
-						<span>{{ props.row.shop }}</span>
-					</el-form-item>
-					<el-form-item label="商品 ID">
-						<span>{{ props.row.id }}</span>
-					</el-form-item>
-					<el-form-item label="店铺 ID">
-						<span>{{ props.row.shopId }}</span>
-					</el-form-item>
-					<el-form-item label="商品分类">
-						<span>{{ props.row.category }}</span>
-					</el-form-item>
-					<el-form-item label="店铺地址">
-						<span>{{ props.row.address }}</span>
-					</el-form-item>
-					<el-form-item label="商品描述">
-						<span>{{ props.row.desc }}</span>
-					</el-form-item>
-					</el-form>
-				</template>
-				</el-table-column>
 				<el-table-column
 				 type=selection
-				 
 				>
 				</el-table-column>
 				<el-table-column
 				label="商品名称"
 				prop="name">
 				</el-table-column>
-				<el-table-column
+				<!-- <el-table-column
 				label="商品图片"
 				prop="img">
-				</el-table-column>
+				</el-table-column> -->
 				<el-table-column
 				label="描述"
 				prop="desc">
@@ -99,117 +71,7 @@ import dh from './Head'
 export default {
 	data() {
       return {
-        cart_list: [{
-			price: 49,
-			name: '好滋好味鸡蛋仔',
-			// img: URL('../assets/img/2001.jpg'),
-			category: '江浙小吃、小吃零食',
-			desc: '荷兰优质淡奶，奶香浓而不腻',
-			count: 1,
-			address: '上海市普陀区真北路',
-			shop: '王小虎夫妻店',
-			shopId: '10333'
-			}, {
-			price: 39,
-			name: '好滋好味鸡蛋仔',
-			category: '江浙小吃、小吃零食',
-			desc: '荷兰优质淡奶，奶香浓而不腻',
-			count: 1,
-			address: '上海市普陀区真北路',
-			shop: '王小虎夫妻店',
-			shopId: '10333'
-			}, {
-			price: 36,
-			name: '好滋好味鸡蛋仔',
-			category: '江浙小吃、小吃零食',
-			desc: '荷兰优质淡奶，奶香浓而不腻',
-			count: 1,
-			address: '上海市普陀区真北路',
-			shop: '王小虎夫妻店',
-			shopId: '10333'
-			}, {
-			price: 37,
-			name: '好滋好味鸡蛋仔',
-			category: '江浙小吃、小吃零食',
-			desc: '荷兰优质淡奶，奶香浓而不腻',
-			count: 2,
-			address: '上海市普陀区真北路',
-			shop: '王小虎夫妻店',
-			shopId: '10333'
-			}, {
-			price: 37,
-			name: '好滋好味鸡蛋仔',
-			category: '江浙小吃、小吃零食',
-			desc: '荷兰优质淡奶，奶香浓而不腻',
-			count: 2,
-			address: '上海市普陀区真北路',
-			shop: '王小虎夫妻店',
-			shopId: '10333'
-			}, {
-			price: 37,
-			name: '好滋好味鸡蛋仔',
-			category: '江浙小吃、小吃零食',
-			desc: '荷兰优质淡奶，奶香浓而不腻',
-			count: 2,
-			address: '上海市普陀区真北路',
-			shop: '王小虎夫妻店',
-			shopId: '10333'
-			}, {
-			price: 37,
-			name: '好滋好味鸡蛋仔',
-			category: '江浙小吃、小吃零食',
-			desc: '荷兰优质淡奶，奶香浓而不腻',
-			count: 2,
-			address: '上海市普陀区真北路',
-			shop: '王小虎夫妻店',
-			shopId: '10333'
-			}, {
-			price: 37,
-			name: '好滋好味鸡蛋仔',
-			category: '江浙小吃、小吃零食',
-			desc: '荷兰优质淡奶，奶香浓而不腻',
-			count: 2,
-			address: '上海市普陀区真北路',
-			shop: '王小虎夫妻店',
-			shopId: '10333'
-			}, {
-			price: 37,
-			name: '好滋好味鸡蛋仔',
-			category: '江浙小吃、小吃零食',
-			desc: '荷兰优质淡奶，奶香浓而不腻',
-			count: 2,
-			address: '上海市普陀区真北路',
-			shop: '王小虎夫妻店',
-			shopId: '10333'
-			}, {
-			price: 37,
-			name: '好滋好味鸡蛋仔',
-			category: '江浙小吃、小吃零食',
-			desc: '荷兰优质淡奶，奶香浓而不腻',
-			count: 2,
-			address: '上海市普陀区真北路',
-			shop: '王小虎夫妻店',
-			shopId: '10333'
-			}],
-		check_list: [{
-			price: 36,
-			name: '好滋好味鸡蛋仔',
-			category: '江浙小吃、小吃零食',
-			desc: '荷兰优质淡奶，奶香浓而不腻',
-			count: 1,
-			address: '上海市普陀区真北路',
-			shop: '王小虎夫妻店',
-			shopId: '10333'
-			}, {
-			price: 37,
-			name: '好滋好味鸡蛋仔',
-			category: '江浙小吃、小吃零食',
-			desc: '荷兰优质淡奶，奶香浓而不腻',
-			count: 2,
-			address: '上海市普陀区真北路',
-			shop: '王小虎夫妻店',
-			shopId: '10333'
-			}],
+			cart_list:[],
 			selectionNum:[],
 			// total_price:0
 			}
@@ -219,25 +81,16 @@ export default {
 	},
 	created(){
 		// this.init()
+		JSON.parse(localStorage.getItem("cart_list"))
+    if(localStorage.getItem("cart_list")===null){
+			this.cart_list=[]
+		}else{
+			this.cart_list=JSON.parse(localStorage.getItem("cart_list"))
+		}
+		console.log("List")
+		console.log(this.cart_list)
 	},
 	computed: {
-		// total_num : function () {
-		// 	let num = 0
-		// 	this.check_list.forEach((item)=>{
-		// 		num += item.count
-		// 	})
-		// 	console.log(num)
-		// 	return num
-		// },
-		// total_price : function () {
-		// 	let sum_price = 0
-		// 	this.check_list.forEach((item)=>{
-		// 		sum_price += item.count*item.price
-		// 		console.log(item+":"+sum_price)
-		// 	})
-		// 	console.log(sum_price)
-		// 	return sum_price
-		// }
 		total_price:function(){
 			if(this.selectionNum.length<=0){
 				return 0
@@ -262,9 +115,7 @@ export default {
 			this.selectionNum=val
 			console.log("Select")
 			console.log(this.selectionNum)
-			localStorage.setItem("selection",JSON.stringify(this.selectionNum))
-			// console.log("localstorege")
-			// console.log(JSON.parse(localStorage.getItem("selection")))
+			
 		},
 		//数量变化
 		handleChange:function (val,index) {
@@ -279,77 +130,35 @@ export default {
 				this.cart_list = res.data.cart_list
 			})
 		},
-		//???
-		// getCheckList(){
-		// 	this.axios.get('/check_list')
-		// 	.then(res =>{
-		// 		this.check_list = res.data.check_list
-		// 	})
-		// },
 		//点击结算，去到结算页面
 		settle(){
-		//    console.log("price")
-		//    console.log(this.total_price)
 			if(this.total_price<=0){
 				 this.$message({
 					message: '请选择商品',
 					type: 'warning'
 				});
 			}else{
+				localStorage.setItem("selection",JSON.stringify(this.selectionNum))
 				localStorage.setItem("total_price", this.total_price.toString())
 				// console.log(localStorage.getItem("total_price"))
+				this.selectionNum.forEach(item=>{
+					this.cart_list.forEach(element=>{
+						if(item.gid===element.gid){
+							this.cart_list.pop(element)
+						}
+					})
+				})
 				this.$router.push({name:"settlement"})
 
 				// this.$router.push({name:"settlement",query:{selectList:this.selectionNum,total_price:this.total_price}})
 			}
 		}
     }
-    // export default {
-//     props: ['id'],
-
-//     data: ()=>({
-//         goods: {
-//         },
-
-   
-//     }),
-
-//     mounted(){
-//         this.init()
-//     },
-
-//     beforeRoteUpdate (to, from, next) {
-//         this.init()
-//         next()
-//     },
-
-//     methods:{
-//         init(){
-//             this.axios.get('http://172.18.44.25/goods/'+this.id)
-//             .then(res=> {
-
-//                 this.goods = res.data
-//                 console.log(this.goods)
-//             })
-//         }
-//     }
-// }
 }
 </script scoped>
 
-    <!-- <div>
-            <h1>test</h1>
-            <div>
-                <p>{{goods.gid}}</p>
-                <p>{{goods.name}}</p>
-                
-                <p><button>加入购物车</button><button><router-link to="/order">立即购买</router-link></button></p>
-            </div>
-
-    </div> -->
-
-
 <style scoped>
+
 	.body-bg {
         position: absolute;
         width: 100%;
@@ -384,5 +193,8 @@ export default {
 		margin-right: 0;
 		margin-bottom: 0;
 		width: 50%;
+	}
+	a{
+		cursor: pointer;
 	}
 </style>

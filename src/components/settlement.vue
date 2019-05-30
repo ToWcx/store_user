@@ -8,9 +8,9 @@
              </div>
             <div  class="text item">
                 <span>{{address.receiveName}}</span>
-                <span>{{address.receivePone}}</span>
+                <span>{{address.receivePhone}}</span>
                 <div>
-                    {{address.address}}
+                    {{address.name}}
                 </div>
             </div>
         </el-card>
@@ -21,7 +21,7 @@
              </div>
             <div  class="text item">
                 <span>{{item.desc}}</span>
-                <span>￥{{item.price}}×1</span>
+                <span>￥{{item.price}}×{{item.count}}</span>
                 <div>
                     配送方式：普通配送
                 </div>
@@ -37,10 +37,11 @@
             </div>
         </el-card>
         <div style="margin-top:50px;margin-bottom:50px;">
-            <span>共{{databs.length}}件，</span>
+            <span v-if="databs.length<=0">共0件，</span>
+            <span v-if="databs.length>0&&databs.length!=null">共{{databs.length}}件，</span>
             <span>合计：￥{{total_price}}</span>
             <span>
-                <el-button type="danger" style="margin-left:30px">提交订单</el-button>
+                <el-button type="danger" style="margin-left:30px" @click="SubmitOrder">提交订单</el-button>
             </span>
         </div>
     </div>
@@ -55,13 +56,20 @@ export default {
         }
     },
     created(){
-        this.databs=JSON.parse(localStorage.getItem("selection"))
+        if(localStorage.getItem("selection")===null){
+            this.databs=[]
+        }else{
+            this.databs=JSON.parse(localStorage.getItem("selection"))
+        }
+        
         this.total_price=JSON.parse(localStorage.getItem("total_price")) 
+        console.log("Data")
+        console.log(this.databs)
         if(JSON.parse(localStorage.getItem("address")===null)){
             this.address={
                 receiveName:"",
-                receivePone:"",
-                address:""
+                receivePhone:"",
+                name:""
             }
         }else{
             this.address=JSON.parse(localStorage.getItem("address")) 
@@ -71,6 +79,46 @@ export default {
         //转到地址页面获取地址
         selectAddress(){
             this.$router.push({name:'address',query:{select:true},repalce:true})
+        },
+        //提交至订单
+        SubmitOrder(){
+            // let cartList=[],
+            // this.databs.forEach(element=>{
+
+            // })
+            let list=[]
+            console.log("list")
+            console.log(list)
+            this.databs.forEach(element=>{
+                list.push({
+                    "gid":element.gid,
+                    "count":element.count
+                })
+            })
+            console.log(list)
+            this.axios.post("/authOrder",{
+                "aid":this.address.id,
+                "cartList":list
+            })
+            .then(res=>{
+                 //清空结算
+                 localStorage.removeItem("selection")
+                 localStorage.removeItem("total_price")
+                 localStorage.removeItem("address")
+                 this.databs=[]
+                 this.address="",
+                 this.total_price=0
+                 localStorage.setItem("Issettlement","true")
+                 //从购物车中删除
+                this.$message({
+                    message: '提交成功',
+                    type: 'success'
+              });
+            })
+            .catch(err=>{
+            
+               this.$message.error('提交失败，请重试！');
+            })
         }
     },
 }

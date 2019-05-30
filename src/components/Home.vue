@@ -47,8 +47,8 @@
                                 <span class="sold">{{object.sold|sold}}</span>
                             </p>
                             <div class="jr_box">
-                                <div class="jrgwc"><router-link :to="{}">加入购物车</router-link></div>
-                                <div class="ljgm"><router-link :to="{}">立即购买</router-link></div>
+                                <div class="jrgwc"><a @click.prevent="addCart(object.id)">加入购物车</a></div>
+                                <div class="ljgm"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">立即购买</router-link></div>
                             </div>
                         </li>
                     </template>
@@ -66,8 +66,8 @@
                                 <span class="sold">{{object.sold|sold}}</span>
                             </p>
                             <div class="jr_box">
-                                <div class="jrgwc"><a href="">加入购物车</a></div>
-                                <div class="ljgm"><a href="">立即购买</a></div>
+                                <div class="jrgwc"><a @click.prevent="addCart(object.id)">加入购物车</a></div>
+                                <div class="ljgm"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">立即购买</router-link></div>
                             </div>
                         </li>
                     </template>
@@ -84,8 +84,9 @@
                                 <span class="sold">{{object.sold|sold}}</span>
                             </p>
                             <div class="jr_box">
-                                <div class="jrgwc"><a href="">加入购物车</a></div>
-                                <div class="ljgm"><a href="">立即购买</a></div>
+                                <div class="jrgwc"><a @click.prevent="addCart(object.id)">加入购物车</a></div>
+                                <!-- <div class="ljgm"><a href="/order">立即购买</a></div> -->
+                                <div class="ljgm"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">立即购买</router-link></div>
                             </div>
                         </li>
                     </template>
@@ -112,6 +113,7 @@ export default {
     },
     data(){
         return{
+            cart_list:[],
             goods: [],
             img:[],
             search: '',
@@ -148,6 +150,23 @@ export default {
         }
     },
     methods:{
+        //加入购物车
+        addCart(id){
+           this.axios.get('/goods/'+id)
+            .then(res=> {
+                var goods=res.data.list
+                this.$set(goods,"gid",id)
+                this.$set(goods,"count",1)
+                this.cart_list.push(goods)
+                console.log(this.cart_list)
+                localStorage.setItem("cart_list",JSON.stringify(this.cart_list))
+                this.$message({
+                    message: '加入购物车成功!',
+                    type: 'success'
+                });
+            })           
+        },
+        //左侧导航栏购物车的判断
          checkLogin(){
              
             if(localStorage.getItem("item")===null){
@@ -192,7 +211,8 @@ export default {
     //     window.addEventListener("beforeunload",()=>{   //在页面刷新前将vuex里的信息保存到sessionStorage里
     // 　　sessionStorage.setItem("store",JSON.stringify(this.$store.state))
     //     })
-
+        //刷新页面
+        // window.location.reload()
         this.axios.get('/goodsImg')
         .then(res => {
             this.goods = res.data.list
@@ -202,6 +222,20 @@ export default {
         // .then(res =>{
         //     this.img = res.data
         // })
+    },
+    beforeCreate(){
+       
+    },
+    beforeRouteEnter (to, from, next) {
+        next(()=>{
+            console.log("reload")
+            console.log(localStorage.getItem("reload"))
+             if((localStorage.getItem("reload"))===null){
+               window.location.reload()
+               localStorage.setItem("reload","true")
+          }
+        })
+       
     }
 }
 </script>

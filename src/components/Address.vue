@@ -93,21 +93,10 @@ export default {
   },
   created(){
      this.axios.get("/authAddress")
-    // this.axios.get("http://localhost:3000/address")
-      // this.axios.get("/auth/address")
       .then(res=>{
         // this.address=res.data
         this.address=res.data.list
-      })
-      // this.axios.put("/auth",{
-      //   "name":"RYL",
-      //   "passwd":"RYL"
-      // })
-      // .then(res=>{
-      //   console.log(res.data)
-      // })
-
-      
+      }) 
   },
 
   methods: {
@@ -142,6 +131,9 @@ export default {
                 message: '添加成功',
                 type: 'success'
               });
+              //实时在页面中更新
+              console.log(res.data)
+              this.address.push(res.data)
               this.dialogFormVisible=false
             })
             .catch(err=>{
@@ -165,6 +157,7 @@ export default {
                 message: '修改成功',
                 type: 'success'
               });
+              this.$router.go(0)
               this.dialogFormVisible=false
             })
             .catch(err=>{

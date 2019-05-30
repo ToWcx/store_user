@@ -14,7 +14,9 @@ const Settlement=()=>import('@/components/settlement')
 // =======
 const Regist = () => import('@/components/Regist')
 const Test = () => import('@/components/Test')
-
+const GoodsDetail = () => import('@/components/GoodsDetail')
+const Details = () => import('@/components/Details')
+const Comments = () => import('@/components/Comments')
 // >>>>>>> 8e1940e511d2a4813d2d1a0e2141896bd0becae3
 
 Vue.use(Router)
@@ -37,10 +39,23 @@ const router = new Router({
       path: '/home',
       component: Home
 
-    }, {
+    },
+     {
       path: '/home/:id',
-      component: Goods,
-      props: true
+      component: GoodsDetail,
+      props: true,
+      children:[
+        {
+          path:'details/:id',
+          name:"details",
+          component:Details
+        },
+        {
+          path:'comments/:id',
+          name:"comments",
+          component:Comments
+        }
+    ]
     },{
       path: '/goodsDes',
       name:'goodsDes',

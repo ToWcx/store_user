@@ -92,19 +92,30 @@ export default {
             console.log(key, keyPath);
         },
         exit(){
-            localStorage.removeItem("count")
-            this.$router.push({name:'login'})
+           
+            this.axios.get("/authLogout")
+            .then(res=>{
+                // localStorage.removeItem("count")
+                localStorage.removeItem("selection")
+                localStorage.removeItem("total_price")
+                localStorage.removeItem("address")
+                localStorage.removeItem("reload")
+                 this.$router.push({name:'login'})
+            })
+            .catch(err=>{
+                console.log(err)
+            })
         },
         checkLogin(type){
             if(this.count===null){
                 this.$router.push({name:'login'})
             }else{
                 if(type==="goodsDes"){
-                   this.$router.push({name:'goodsDes'})
+                   this.$router.replace({name:'goodsDes'})
                 }else if(type==="address"){
-                   this.$router.push({name:'address'})
+                   this.$router.replace({name:'address'})
                 }else if(type==="order"){
-                  this.$router.push({name:'order'})
+                  this.$router.replace({name:'order'})
                 }
             }
         }

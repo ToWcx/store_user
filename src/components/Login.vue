@@ -68,6 +68,12 @@ export default {
             }
         }
     },
+    created(){
+    //    this.axios.get("/authLogout")
+    //    .then(res=>{
+    //        console.log("登出了")
+    //    })
+    },
     methods:{
         login(form){
             //  localStorage.removeItem("count")
@@ -83,9 +89,11 @@ export default {
                     // this.state;
                     if(res.data.code == 0) {
                         localStorage.setItem("count",this.form.name)
+                        console.log("count")
+                        console.log(localStorage.getItem("count"))
                         // this.$store.commit('login',this.form.name)
                         this.$router.push({ path:'/home'  })
-                        alert("登录成功")
+                        // alert("登录成功")
                     }else if(res.data.code == 1){
                         alert("账号或密码有误！");
                     }
