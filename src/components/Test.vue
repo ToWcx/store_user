@@ -1,72 +1,52 @@
 <template>
-    <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="demo-dynamic">
-    <el-form-item
-        prop="email"
-        label="邮箱"
-        :rules="[
-        { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-        { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change' }
-        ]"
-    >
-        <el-input v-model="dynamicValidateForm.email"></el-input>
-    </el-form-item>
-    <el-form-item
-        v-for="(domain, index) in dynamicValidateForm.domains"
-        :label="'域名' + index"
-        :key="domain.key"
-        :prop="'domains.' + index + '.value'"
-        :rules="{
-        required: true, message: '域名不能为空', trigger: 'blur'
-        }"
-    >
-        <el-input v-model="domain.value"></el-input><el-button @click.prevent="removeDomain(domain)">删除</el-button>
-    </el-form-item>
-    <el-form-item>
-        <el-button type="primary" @click="submitForm('dynamicValidateForm')">提交</el-button>
-        <el-button @click="addDomain">新增域名</el-button>
-        <el-button @click="resetForm('dynamicValidateForm')">重置</el-button>
-    </el-form-item>
-    </el-form>
+  <div class="container">
+    
+    <el-popover
+      ref="popover"
+      placement="right"
+      width="400"
+      trigger="click">
+      <el-table :data="gridData">
+        <el-table-column width="150" property="date" label="日期"></el-table-column>
+        <el-table-column width="100" property="name" label="姓名"></el-table-column>
+        <el-table-column width="300" property="address" label="地址"></el-table-column>
+      </el-table>
+    </el-popover>
+    <el-button v-popover:popover>click 激活</el-button>
+  </div>
 </template>
+
 
 <script>
   export default {
     data() {
       return {
-        dynamicValidateForm: {
-          domains: [{
-            value: ''
-          }],
-          email: ''
-        }
+        gridData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }]
       };
-    },
-    methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-      },
-      removeDomain(item) {
-        var index = this.dynamicValidateForm.domains.indexOf(item)
-        if (index !== -1) {
-          this.dynamicValidateForm.domains.splice(index, 1)
-        }
-      },
-      addDomain() {
-        this.dynamicValidateForm.domains.push({
-          value: '',
-          key: Date.now()
-        });
-      }
     }
-  }
+  };
 </script>
+
+<style scoped>
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    /* border: 1px solid black; */
+	}
+</style>

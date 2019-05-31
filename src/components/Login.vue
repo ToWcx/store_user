@@ -93,9 +93,13 @@ export default {
                         console.log(localStorage.getItem("count"))
                         // this.$store.commit('login',this.form.name)
                         this.$router.push({ path:'/home'  })
+// <<<<<<< HEAD
                         // alert("登录成功")
+// =======
+                        // alert(res.data.code +"name:" + this.form.name +"passwd:"+this.form.passwd)
+// >>>>>>> 23fd12f3867ca06bdb830500c152fa0e67dcaaa5
                     }else if(res.data.code == 1){
-                        alert("账号或密码有误！");
+                        alert("登录失败，用户名或密码错误");
                     }
                 })
           } else {
