@@ -81,7 +81,7 @@ export default {
           if (valid) {
             //   localStorage.setItem("count",this.form.name)
             //     this.$router.push({ path:'/home'  })
-                this.$router.replace('/home')
+                // this.$router.replace('/home')
                 this.axios.put("/beforeAuth",{
                     name: this.form.name,
                     passwd: this.form.passwd

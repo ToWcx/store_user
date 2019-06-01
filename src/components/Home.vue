@@ -46,8 +46,25 @@
                                 <span class="qgj">抢购价：</span><span class="price">{{object.price|price}}</span>
                                 <span class="sold">{{object.sold|sold}}</span>
                             </p>
+                          
                             <div class="jr_box">
-                                <div class="jrgwc"><a @click.prevent="addCart(object.id)">加入购物车</a></div>
+                                     <el-popover
+                                        class="jrgwc"
+                                        placement="bottom"
+                                        title="购物车"
+                                        trigger="click"
+                                        ref="popover"
+                                      >
+                                      <div>
+                                          <div ><img :src="doImg(object.img)" class="img2">
+                                          <span>{{object.name}}</span>
+                                          </div>
+                                          <div></div>
+                                      </div>
+                                       
+                                        <el-button  style="width: 115px;height: 43px;background-color: #DDD;" slot="reference">加入购物车</el-button>
+                                    </el-popover> 
+                                <!-- <div class="jrgwc"><a @click.prevent="addCart(object.id)">加入购物车</a></div> -->
                                 <div class="ljgm"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">立即购买</router-link></div>
                             </div>
                         </li>
@@ -152,6 +169,7 @@ export default {
     methods:{
         //加入购物车
         addCart(id){
+
            this.axios.get('/goods/'+id)
             .then(res=> {
                 var goods=res.data.list
@@ -213,9 +231,15 @@ export default {
     //     })
         //刷新页面
         // window.location.reload()
-        this.axios.get('/goodsImg')
+        this.axios.get('/goods')
         .then(res => {
             this.goods = res.data.list
+            if(localStorage.getItem("goods")===null){
+                this.cart_list=[]
+            }else{
+               this.cart_list=JSON.parse(localStorage.getItem("goods")) 
+            }
+            
         })
         
         // this.axios.get('/img')
@@ -428,5 +452,9 @@ export default {
         color: #424242;
         font-size: 0;
         border: 1px solid #dd182b;
+    }
+    .img2{
+        width: 100px;
+        height:100px;
     }
 </style>

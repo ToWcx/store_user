@@ -92,13 +92,15 @@ export default {
             this.databs.forEach(element=>{
                 list.push({
                     "gid":element.gid,
-                    "count":element.count
+                    "count":element.count,
+                    
                 })
             })
             console.log(list)
             this.axios.post("/authOrder",{
                 "aid":this.address.id,
-                "cartList":list
+                "cartList":list,
+                "total":localStorage.getItem("total_price")
             })
             .then(res=>{
                  //清空结算
