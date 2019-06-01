@@ -1,4 +1,6 @@
 <template>
+    <el-scrollbar>
+    <dh></dh>
     <div class="container"> 
         <!-- <dh></dh> -->
         <div class="div">            
@@ -68,6 +70,7 @@
             <router-view></router-view>
         </div>
     </div>
+    </el-scrollbar>
 </template>
 
 <script>
@@ -162,7 +165,7 @@ export default {
 }
 #message{
    margin-left: 50px;
-   width:800px;
+   width:760px;
 }
 #intro{
    background-color: rgba(0, 0, 0, 0.05);
@@ -189,6 +192,12 @@ span{
 }
 .el-button--danger{
     position:relative;
+    background-color: #409EFF;
+    border-color: #409EFF;
+}
+.el-button--danger:hover{
+    background-color: #5ea7f3;
+    border-color: #5ea7f3;
 }
 #detail{
     width:100%;
@@ -208,5 +217,7 @@ a{
     background-color: rgba(255, 0, 0, 0.685);
     color: white
 }
+
+
 </style>
 

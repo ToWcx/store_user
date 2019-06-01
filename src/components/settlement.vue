@@ -1,6 +1,7 @@
 <template>
+    <el-scrollbar>
+    <dh></dh>
     <div class="container">
-       
         <el-card class="box-card">
              <div slot="header" class="clearfix">
                 <span>收货地址</span>
@@ -45,8 +46,10 @@
             </span>
         </div>
     </div>
+    </el-scrollbar>
 </template>
 <script>
+import dh from './Head'
 export default {
     data() {
         return {
@@ -55,6 +58,9 @@ export default {
             total_price:0
         }
     },
+    components: {
+        dh
+	},
     created(){
         if(localStorage.getItem("selection")===null){
             this.databs=[]
@@ -92,13 +98,14 @@ export default {
             this.databs.forEach(element=>{
                 list.push({
                     "gid":element.gid,
-                    "count":element.count
+                    "count":element.count,
                 })
             })
             console.log(list)
             this.axios.post("/authOrder",{
                 "aid":this.address.id,
-                "cartList":list
+                "cartList":list,
+                "total":localStorage.getItem("total_price")
             })
             .then(res=>{
                  //清空结算

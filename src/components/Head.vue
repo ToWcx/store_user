@@ -95,11 +95,12 @@ export default {
            
             this.axios.get("/authLogout")
             .then(res=>{
-                // localStorage.removeItem("count")
+                localStorage.removeItem("count")
                 localStorage.removeItem("selection")
                 localStorage.removeItem("total_price")
                 localStorage.removeItem("address")
                 localStorage.removeItem("reload")
+                localStorage.removeItem("cart_list")
                  this.$router.push({name:'login'})
             })
             .catch(err=>{

@@ -22,7 +22,7 @@
 					width="120">
 				</el-table-column>
 				<el-table-column
-					prop="pay"
+					prop="total"
 					label="总额"
 					width="120">
 				</el-table-column>
@@ -81,101 +81,7 @@ import dh from './Head'
 		},
     data() {
       return {
-        tableData: [{
-					address:{
-             
-             time: '2019-05-30 11:31:37',
-							name: '内蒙古自治区通辽市开鲁县义和塔拉镇小林场村委会',
-							receiveName: '章善瑞',
-							receivePhone: '5676578',
-							pay: '',
-							state: '未支付'
-					},
-					cart:[
-							{
-							goods: '好时之吻Kisses炫彩多口味巧克力 糖果零食婚庆婚庆喜糖散装500g',
-							price: '49.8',
-							count: '2',
-							subTotal: ''
-						},
-						{
-							goods: '好时之吻Kisses炫彩多口味巧克力 糖果零食婚庆婚庆喜糖散装500g',
-							price: '49.8',
-							count: '2',
-							subTotal: ''
-						},
-						{
-							goods: '好时之吻Kisses炫彩多口味巧克力 糖果零食婚庆婚庆喜糖散装500g',
-							price: '49.8',
-							count: '2',
-							subTotal: ''
-						},
-					]
-				},
-				{
-						address:{
-              time: '2019-05-29 11:31:37',
-							name: '内蒙古自治区通辽市开鲁县义和塔拉镇小林场村委会',
-							receiveName: '章善瑞',
-							receivePhone: '5676578',
-							pay: '',
-							state: '未支付'
-					},
-					cart:[
-							{
-							goods: '好时之吻Kisses炫彩多口味巧克力 糖果零食婚庆婚庆喜糖散装500g',
-							price: '49.8',
-							count: '2',
-							subTotal: ''
-						},
-						{
-							goods: '好时之吻Kisses炫彩多口味巧克力 糖果零食婚庆婚庆喜糖散装500g',
-							price: '49.8',
-							count: '2',
-							subTotal: ''
-						},
-						{
-							goods: '好时之吻Kisses炫彩多口味巧克力 糖果零食婚庆婚庆喜糖散装500g',
-							price: '49.8',
-							count: '2',
-							subTotal: ''
-						},
-					]
-          
-				},
-				
-				{
-          address:{
-              time: '2019-05-28 11:31:37',
-							name: '内蒙古自治区通辽市开鲁县义和塔拉镇小林场村委会',
-							receiveName: '章善瑞',
-							receivePhone: '5676578',
-							pay: '',
-							state: '未支付'
-					},
-					cart:[
-						{
-							goods: '好时之吻Kisses炫彩多口味巧克力 糖果零食婚庆婚庆喜糖散装500g',
-							price: '49.8',
-							count: '2',
-							subTotal: ''
-						},
-						{
-							goods: '好时之吻Kisses炫彩多口味巧克力 糖果零食婚庆婚庆喜糖散装500g',
-							price: '49.8',
-							count: '2',
-							subTotal: ''
-						},
-						{
-							goods: '好时之吻Kisses炫彩多口味巧克力 糖果零食婚庆婚庆喜糖散装500g',
-							price: '49.8',
-							count: '2',
-							subTotal: ''
-						},
-					]
-          
-        }
-      ],
+        tableData:[],
 				// tableData:[],
 				gridData:[],
 				// gridData: [{

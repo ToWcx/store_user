@@ -1,5 +1,5 @@
 <template>
-	<el-scrollbar>
+	<div>
 		<dh></dh>
 		<div class="container">
 			<h4>购物车<i class="el-icon-goods"></i></h4>
@@ -63,7 +63,7 @@
 				</el-col>
 			</el-row>
 		</div>
-	</el-scrollbar>
+	</div>
 </template>
 
 <script>
@@ -159,6 +159,7 @@ export default {
 
 <style scoped>
 
+
 	.body-bg {
         position: absolute;
         width: 100%;
@@ -180,6 +181,11 @@ export default {
 		margin-top: 30px;
 		margin-bottom: 20px;
 		color: #424242;
+	}
+	.el-col-16{
+		width: 200px;
+    position: absolute;
+    right: 0;
 	}
 	/* 引入样式 */
 	.demo-table-expand {
