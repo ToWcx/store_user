@@ -50,6 +50,7 @@
 </template>
 <script>
 export default {
+    inject:['reload'],
     data() {
         return {
             form:{
@@ -73,7 +74,20 @@ export default {
     //    .then(res=>{
     //        console.log("登出了")
     //    })
+    this.reload
     },
+    //   beforeRouteEnter (to, from, next) {
+    //     next(()=>{
+    //         console.log("reload")
+    //         console.log(localStorage.getItem("reload"))
+    //          if((localStorage.getItem("reload"))===null||localStorage.getItem("reload")==="true"){
+    //            window.location.reload()
+    //            localStorage.setItem("reload","false")
+    //       }
+    //     })
+    //     // this.reload
+    //     // next()
+    // },
     methods:{
         login(form){
             //  localStorage.removeItem("count")
@@ -92,7 +106,7 @@ export default {
                         console.log("count")
                         console.log(localStorage.getItem("count"))
                         // this.$store.commit('login',this.form.name)
-                        this.$router.push({ path:'/home'  })
+                        this.$router.replace({ path:'/home'  })
 // <<<<<<< HEAD
                         // alert("登录成功")
 // =======

@@ -56,13 +56,21 @@
                                         ref="popover"
                                       >
                                       <div>
-                                          <div ><img :src="doImg(object.img)" class="img2">
-                                          <span>{{object.name}}</span>
+                                          <div class="div_float" ><img :src="doImg(object.img)" class="img2">
+                                          <!-- <span></span> -->
                                           </div>
-                                          <div></div>
+                                          <div>{{object.name}}
+                                               <el-input style="width:150px;margin-top:10px" v-model="num">
+                                                    <el-button style="width:20px;padding-left:10px;" slot="prepend" icon="el-icon-minus" @click="sub"></el-button>
+                                                    <el-button style="width:20px;padding-left:10px;" slot="append" icon="el-icon-plus" @click="add"></el-button>
+                                                </el-input>
+                                          </div>
+                                          <div>
+                                              <el-button style="margin-top:10px;height:30px;margin-left:20px" type="primary" @click="addCart(object.id)">确定</el-button>
+                                          </div>
                                       </div>
-                                       
-                                        <el-button  style="width: 115px;height: 43px;background-color: #DDD;" slot="reference">加入购物车</el-button>
+                                        <el-button v-if="count===null" style="width: 115px;height: 43px;background-color: #DDD;" slot="reference" @click="login">加入购物车</el-button>
+                                        <el-button v-else style="width: 115px;height: 43px;background-color: #DDD;" slot="reference" @click="initNum">加入购物车</el-button>
                                     </el-popover> 
                                 <!-- <div class="jrgwc"><a @click.prevent="addCart(object.id)">加入购物车</a></div> -->
                                 <div class="ljgm"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">立即购买</router-link></div>
@@ -83,7 +91,30 @@
                                 <span class="sold">{{object.sold|sold}}</span>
                             </p>
                             <div class="jr_box">
-                                <div class="jrgwc"><a @click.prevent="addCart(object.id)">加入购物车</a></div>
+                                  <el-popover
+                                        class="jrgwc"
+                                        placement="bottom"
+                                        title="购物车"
+                                        trigger="click"
+                                        ref="popover"
+                                      >
+                                      <div>
+                                          <div class="div_float" ><img :src="doImg(object.img)" class="img2">
+                                          <!-- <span></span> -->
+                                          </div>
+                                          <div>{{object.name}}
+                                               <el-input style="width:150px;margin-top:10px" v-model="num">
+                                                    <el-button style="width:20px;padding-left:10px;" slot="prepend" icon="el-icon-minus" @click="sub"></el-button>
+                                                    <el-button style="width:20px;padding-left:10px;" slot="append" icon="el-icon-plus" @click="add"></el-button>
+                                                </el-input>
+                                          </div>
+                                          <div>
+                                              <el-button style="margin-top:10px;height:30px;margin-left:20px" type="primary" @click="addCart(object.id)">确定</el-button>
+                                          </div>
+                                      </div>
+                                       
+                                        <el-button  style="width: 115px;height: 43px;background-color: #DDD;" slot="reference" @click="initNum">加入购物车</el-button>
+                                    </el-popover> 
                                 <div class="ljgm"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">立即购买</router-link></div>
                             </div>
                         </li>
@@ -101,7 +132,30 @@
                                 <span class="sold">{{object.sold|sold}}</span>
                             </p>
                             <div class="jr_box">
-                                <div class="jrgwc"><a @click.prevent="addCart(object.id)">加入购物车</a></div>
+                                  <el-popover
+                                        class="jrgwc"
+                                        placement="bottom"
+                                        title="购物车"
+                                        trigger="click"
+                                        ref="popover"
+                                      >
+                                      <div>
+                                          <div class="div_float" ><img :src="doImg(object.img)" class="img2">
+                                          <!-- <span></span> -->
+                                          </div>
+                                          <div>{{object.name}}
+                                               <el-input style="width:150px;margin-top:10px" v-model="num">
+                                                    <el-button style="width:20px;padding-left:10px;" slot="prepend" icon="el-icon-minus" @click="sub"></el-button>
+                                                    <el-button style="width:20px;padding-left:10px;" slot="append" icon="el-icon-plus" @click="add"></el-button>
+                                                </el-input>
+                                          </div>
+                                          <div>
+                                              <el-button style="margin-top:10px;height:30px;margin-left:20px" type="primary" @click="addCart(object.id)">确定</el-button>
+                                          </div>
+                                      </div>
+                                       
+                                        <el-button  style="width: 115px;height: 43px;background-color: #DDD;" slot="reference" @click="initNum">加入购物车</el-button>
+                                    </el-popover> 
                                 <!-- <div class="ljgm"><a href="/order">立即购买</a></div> -->
                                 <div class="ljgm"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">立即购买</router-link></div>
                             </div>
@@ -123,6 +177,7 @@ import dh from './Head'
 import searchTool from './SearchTool'
 export default {
     name: 'home',
+    inject:['reload'],
     components: {
         lbt,
         dh,
@@ -130,14 +185,14 @@ export default {
     },
     data(){
         return{
-            cart_list:[],
             goods: [],
             img:[],
             search: '',
             // baseUrl: 'http://localhost:3000',
-            
+            count:"",
             // goodsDes: 'goods'
             list: [],
+            num:1,
             /*
             */
             like: '',
@@ -167,31 +222,47 @@ export default {
         }
     },
     methods:{
-        //加入购物车
+        login(){
+                this.$router.replace({name:'login'})
+        },
+         sub(){
+            if(this.num>1){
+                this.num--;
+            }
+        },
+        add(){
+            this.num++
+        },
+        // //加入购物车
         addCart(id){
-
-           this.axios.get('/goods/'+id)
-            .then(res=> {
-                var goods=res.data.list
-                this.$set(goods,"gid",id)
-                this.$set(goods,"count",1)
-                this.cart_list.push(goods)
-                console.log(this.cart_list)
-                localStorage.setItem("cart_list",JSON.stringify(this.cart_list))
-                this.$message({
+              console.log(id);
+              console.log(this.num)
+              this.axios.post("/authCart",{
+                  count:this.num,
+                  gid:id,
+              })
+              .then(res=>{
+                  this.$message({
                     message: '加入购物车成功!',
                     type: 'success'
                 });
-            })           
+              })
+              .catch(erro=>{
+                  this.$message.erro("加入购物车失败！")
+              }) 
         },
         //左侧导航栏购物车的判断
          checkLogin(){
              
-            if(localStorage.getItem("item")===null){
+            if(localStorage.getItem("count")===null){
                 this.$router.push({name:'login'})
             }else{
                 this.$router.push({name:'goodsDes'})
             }
+        },
+        //点击每个商品加购前初始化num
+        initNum(){
+            this.num=1
         },
     doLike(){
         if(this.like==''){
@@ -222,15 +293,8 @@ export default {
     }
     },
     created(){
-    //     if (sessionStorage.getItem("store") ) {   //页面加载前读取sessionStorage里的状态信息
-    // 　　this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(sessionStorage.getItem("store"))))
-    //     } 
-
-    //     window.addEventListener("beforeunload",()=>{   //在页面刷新前将vuex里的信息保存到sessionStorage里
-    // 　　sessionStorage.setItem("store",JSON.stringify(this.$store.state))
-    //     })
-        //刷新页面
-        // window.location.reload()
+        this.reload
+        this.count=localStorage.getItem("count");
         this.axios.get('/goods')
         .then(res => {
             this.goods = res.data.list
@@ -250,17 +314,19 @@ export default {
     beforeCreate(){
        
     },
-    beforeRouteEnter (to, from, next) {
-        next(()=>{
-            console.log("reload")
-            console.log(localStorage.getItem("reload"))
-             if((localStorage.getItem("reload"))===null){
-               window.location.reload()
-               localStorage.setItem("reload","true")
-          }
-        })
+    // beforeRouteEnter (to, from, next) {
+    //     next(()=>{
+    //         console.log("reload")
+    //         console.log(localStorage.getItem("reload"))
+    //          if((localStorage.getItem("reload"))===null||localStorage.getItem("reload")==="false"){
+    //            window.location.reload()
+    //            localStorage.setItem("reload","true")
+    //       }
+    //     })
+    //     // this.reload
+    //     // next()
        
-    }
+    // }
 }
 </script>
 
@@ -454,7 +520,10 @@ export default {
         border: 1px solid #dd182b;
     }
     .img2{
-        width: 100px;
-        height:100px;
+        width: 80px;
+        height:80px;
+    }
+    .div_float{
+        float:left
     }
 </style>

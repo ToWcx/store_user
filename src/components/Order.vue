@@ -22,7 +22,7 @@
 					width="120">
 				</el-table-column>
 				<el-table-column
-					prop="pay"
+					prop="total"
 					label="总额"
 					width="120">
 				</el-table-column>

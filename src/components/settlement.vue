@@ -1,6 +1,7 @@
 <template>
+    <el-scrollbar>
+    <dh></dh>
     <div class="container">
-       
         <el-card class="box-card">
              <div slot="header" class="clearfix">
                 <span>收货地址</span>
@@ -45,8 +46,10 @@
             </span>
         </div>
     </div>
+    </el-scrollbar>
 </template>
 <script>
+import dh from './Head'
 export default {
     data() {
         return {
@@ -55,6 +58,9 @@ export default {
             total_price:0
         }
     },
+    components: {
+        dh
+	},
     created(){
         if(localStorage.getItem("selection")===null){
             this.databs=[]
@@ -87,40 +93,113 @@ export default {
 
             // })
             let list=[]
-            console.log("list")
-            console.log(list)
-            this.databs.forEach(element=>{
-                list.push({
-                    "gid":element.gid,
-                    "count":element.count,
-                    
+              console.log("djshfjdh")
+                 console.log(this.$route.params.isCart)
+           //判断是从购物车中结算还是立即购买的结算
+           if(this.$route.params.isCart==="true"){//从购物车中结算
+                this.databs.forEach(element=>{
+                    list.push(element.id)//存购物车id
                 })
-            })
-            console.log(list)
+                //  console.log("djshfjdh")
+                //  console.log(list)
+                this.axios.post("/authOrder/fromCart",{
+                     "aid":this.address.id,
+                     "cartId":list,
+                })
+                .then(res=>{
+                    //从购物车中删除
+                       this.databs.forEach(item=>{
+                     this.axios.delete("/authCart/"+item.id)
+                     .then(res=>{
+                          //清空结算
+                            localStorage.removeItem("selection")
+                            localStorage.removeItem("total_price")
+                            localStorage.removeItem("address")
+                            this.databs=[]
+                            this.address="",
+                            this.total_price=0
+                            localStorage.setItem("Issettlement","true")
+                            
+                            this.$message({
+                                message: '提交成功',
+                                type: 'success'
+                    
+                            });
+                     })
+                    .catch(err=>{
+                            
+                            this.$message.error('提交失败，请重试！');
+                      })
+                   })
+                })
+                .catch(err=>{
+
+                })
+           }
+         //立即购买的结算
+         else if(this.$route.params.isCart==="false"){
+             this.axios.post("/authOrder",{
+                 "aid":this.address.id,
+                 "gid":this.databs.gid,
+                 "count":this.databs.count
+             })
+             .then(res=>{
+                 this.$message({
+                                message: '提交成功',
+                                type: 'success'
+                    
+                });
+             })
+             .catch(erro=>{
+                this.$message.error('提交失败，请重试！');
+             })
+         }
+            // console.log("list")
+            // console.log(list)
+            // this.databs.forEach(element=>{
+            //     list.push({
+            //         "gid":element.gid,
+            //         "count":element.count,
+
+            //     })
+            // })
+            // console.log(list)
             this.axios.post("/authOrder",{
                 "aid":this.address.id,
                 "cartList":list,
                 "total":localStorage.getItem("total_price")
             })
-            .then(res=>{
-                 //清空结算
-                 localStorage.removeItem("selection")
-                 localStorage.removeItem("total_price")
-                 localStorage.removeItem("address")
-                 this.databs=[]
-                 this.address="",
-                 this.total_price=0
-                 localStorage.setItem("Issettlement","true")
-                 //从购物车中删除
-                this.$message({
-                    message: '提交成功',
-                    type: 'success'
-              });
-            })
-            .catch(err=>{
+            // .then(res=>{
+            //      //从购物车中删除
+            //      this.databs.forEach(item=>{
+            //          this.axios.delete("/authCart/"+item.id)
+            //          .then(res=>{
+            //               //清空结算
+            //                 localStorage.removeItem("selection")
+            //                 localStorage.removeItem("total_price")
+            //                 localStorage.removeItem("address")
+            //                 this.databs=[]
+            //                 this.address="",
+            //                 this.total_price=0
+            //                 localStorage.setItem("Issettlement","true")
+                            
+            //                 this.$message({
+            //                     message: '提交成功',
+            //                     type: 'success'
+                    
+            //                 });
+            //          })
+            //         .catch(err=>{
+                            
+            //                 this.$message.error('提交失败，请重试！');
+            //          })
+            //      })
+                
+            // })
+            // .catch(err=>{
             
-               this.$message.error('提交失败，请重试！');
-            })
+            // //    this.$message.error('提交失败，请重试！');
+            // })
         }
     },
 }
@@ -130,6 +209,10 @@ export default {
         max-width: 1080px;
         margin: 0 auto;
         /* border: 1px solid black; */
+}
+
+.el-card{
+    overflow:visible
 }
 </style>
 

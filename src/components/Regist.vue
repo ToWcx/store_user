@@ -145,8 +145,9 @@
                 passwd: this.ruleForm.passwd
 
             }).then((response) => {
-              localStorage.setItem("count",this.ruleForm.name)
-              this.$router.push({ path:'/home'  })
+              // localStorage.setItem("count",this.ruleForm.name)
+
+              this.$router.replace({ path:'/login'  })
             })
             .catch(function (error) {
               alert("注册失败");

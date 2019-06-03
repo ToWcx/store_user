@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <router-view v-if="isRouterAlive"/>
 
   </div>

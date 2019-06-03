@@ -112,11 +112,11 @@ export default {
                 this.$router.push({name:'login'})
             }else{
                 if(type==="goodsDes"){
-                   this.$router.replace({name:'goodsDes'})
+                   this.$router.push({name:'goodsDes'})
                 }else if(type==="address"){
-                   this.$router.replace({name:'address'})
+                   this.$router.push({name:'address'})
                 }else if(type==="order"){
-                  this.$router.replace({name:'order'})
+                  this.$router.push({name:'order'})
                 }
             }
         }

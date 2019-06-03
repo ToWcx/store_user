@@ -1,5 +1,5 @@
 <template>
-	<el-scrollbar>
+	<div>
 		<dh></dh>
 		<div class="container">
 			<h4>购物车<i class="el-icon-goods"></i></h4>
@@ -63,7 +63,7 @@
 				</el-col>
 			</el-row>
 		</div>
-	</el-scrollbar>
+	</div>
 </template>
 
 <script>
@@ -81,14 +81,13 @@ export default {
 	},
 	created(){
 		// this.init()
-		JSON.parse(localStorage.getItem("cart_list"))
-    if(localStorage.getItem("cart_list")===null){
-			this.cart_list=[]
-		}else{
-			this.cart_list=JSON.parse(localStorage.getItem("cart_list"))
-		}
-		console.log("List")
-		console.log(this.cart_list)
+		this.axios.get("/authCart")
+		.then(res=>{
+			this.cart_list=res.data.list
+		})
+		.catch(erro=>{
+			console.log(erro.data)
+		})
 	},
 	computed: {
 		total_price:function(){
@@ -106,8 +105,13 @@ export default {
 		}
 	},
 	methods: {
-		deleteRow(index, rows) {
-		rows.splice(index, 1);
+			deleteRow(index, rows) {
+			console.log(rows[index].id)
+			this.axios.delete("/authCart/"+rows[index].id)
+			.then(res=>{
+         rows.splice(index, 1);
+			})
+			
 		},
 		//复选框变化，存储已选择项
 		handleSelectionChange:function (val) {
@@ -148,7 +152,7 @@ export default {
 						}
 					})
 				})
-				this.$router.push({name:"settlement"})
+				this.$router.push({name:"settlement",params:{isCart:"true"}})
 
 				// this.$router.push({name:"settlement",query:{selectList:this.selectionNum,total_price:this.total_price}})
 			}
@@ -158,6 +162,7 @@ export default {
 </script scoped>
 
 <style scoped>
+
 
 	.body-bg {
         position: absolute;
@@ -180,6 +185,11 @@ export default {
 		margin-top: 30px;
 		margin-bottom: 20px;
 		color: #424242;
+	}
+	.el-col-16{
+		width: 200px;
+    position: absolute;
+    right: 0;
 	}
 	/* 引入样式 */
 	.demo-table-expand {
