@@ -152,7 +152,8 @@ export default {
 						}
 					})
 				})
-				this.$router.push({name:"settlement",params:{isCart:"true"}})
+				localStorage.setItem("isCart","true")
+				this.$router.push({name:"settlement"})
 
 				// this.$router.push({name:"settlement",query:{selectList:this.selectionNum,total_price:this.total_price}})
 			}

@@ -170,6 +170,7 @@ export default {
                 type: 'success'
               });
               //实时在页面中更新
+               console.log("daddress")
               console.log(res.data)
               this.address.push(res.data)
               this.dialogFormVisible=false
@@ -209,7 +210,7 @@ export default {
     },
     //在结算时选择地址传给结算页面
     getAdress(address){
-      if(this.$route.query.select){
+      if(localStorage.getItem("select")==="true"){
           localStorage.setItem("address",JSON.stringify(address))
           this.$router.push({name:'settlement'})
       }

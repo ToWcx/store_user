@@ -53,7 +53,7 @@
                     <el-button slot="prepend" icon="el-icon-minus" @click="sub"></el-button>
                      <el-button slot="append" icon="el-icon-plus" @click="add"></el-button>
                 </el-input>
-                <el-button type="danger" @click="addTocart">加入购物车</el-button> 
+                <el-button type="danger" @click="addToCart">加入购物车</el-button> 
                 <el-button type="danger" @click="Buy">立即购买</el-button> 
             </p>
             
@@ -107,10 +107,30 @@ export default {
         sub(){
             if(this.num>0){
                 this.goods.count--;
+                this.num--;
             }
         },
         add(){
-            this.goods.count++
+            this.goods.count++;
+            this.num++;
+        },
+        //加入购物车
+        addToCart(){
+            this.axios.post("/authCart",{
+                 count:this.goods.count,
+                  gid:this.id,
+            })
+            .then(res=>{
+               this.$message({
+                        message: '加入购物车成功',
+                        type: 'success'
+                                    
+                });
+            })
+            .catch(err=>{
+                this.$message.error("加入购物车失败！");
+                
+            })
         },
         //点击购买跳至结算页
         Buy(){
@@ -120,12 +140,10 @@ export default {
             console.log(Datas)
             localStorage.setItem("selection",JSON.stringify(Datas))
             localStorage.setItem("total_price",this.total_price.toString())
-            this.$router.push({name:'settlement',params:{isCart:"false"}})
+            localStorage.setItem("isCart","false")
+            this.$router.push({name:"settlement"})
         },
-        //加入购物车
-        addTocart(){
-
-        }
+        
     },
    
     created(){

@@ -33,7 +33,7 @@
                     店铺优惠：
                 </div>
                 <div>
-                    订单备注：的付款就会发光的共和党了广泛化工
+                    订单备注：
                 </div>
             </div>
         </el-card>
@@ -84,7 +84,8 @@ export default {
     methods: {
         //转到地址页面获取地址
         selectAddress(){
-            this.$router.push({name:'address',query:{select:true},repalce:true})
+            localStorage.setItem("select","true")
+            this.$router.push({name:'address',repalce:true})
         },
         //提交至订单
         SubmitOrder(){
@@ -93,113 +94,79 @@ export default {
 
             // })
             let list=[]
-              console.log("djshfjdh")
-                 console.log(this.$route.params.isCart)
+              
            //判断是从购物车中结算还是立即购买的结算
-           if(this.$route.params.isCart==="true"){//从购物车中结算
-                this.databs.forEach(element=>{
-                    list.push(element.id)//存购物车id
-                })
-                //  console.log("djshfjdh")
-                //  console.log(list)
-                this.axios.post("/authOrder/fromCart",{
-                     "aid":this.address.id,
-                     "cartId":list,
-                })
-                .then(res=>{
-                    //从购物车中删除
-                       this.databs.forEach(item=>{
-                     this.axios.delete("/authCart/"+item.id)
-                     .then(res=>{
-                          //清空结算
-                            localStorage.removeItem("selection")
-                            localStorage.removeItem("total_price")
-                            localStorage.removeItem("address")
-                            this.databs=[]
-                            this.address="",
-                            this.total_price=0
-                            localStorage.setItem("Issettlement","true")
+         
+                if(this.databs.length>0){
+                     if(localStorage.getItem("address")===null){
+                            this.$message.error('请选择地址！');
+                    }else{
+                        console.log("djshfjdh")
+                        console.log(localStorage.getItem("address"))
+                        console.log(localStorage.getItem("isCart"))
+                        if(localStorage.getItem("isCart")==="true"){//从购物车中结算
+                                this.databs.forEach(element=>{
+                                    list.push(element.id)//存购物车id
+                                })
+                                //  console.log("djshfjdh")
+                                //  console.log(list)
+                                this.axios.post("/authOrder/fromCart",{
+                                    "aid":this.address.id,
+                                    "cartId":list,
+                                })
+                                .then(res=>{
+                                    localStorage.removeItem("selection")
+                                    localStorage.removeItem("total_price")
+                                    localStorage.removeItem("address")
+                                    this.databs=[]
+                                    this.address="",
+                                    this.total_price=0
+                                    localStorage.setItem("Issettlement","true")
+                                    
+                                    this.$message({
+                                        message: '提交成功',
+                                        type: 'success'
                             
-                            this.$message({
-                                message: '提交成功',
-                                type: 'success'
-                    
-                            });
-                     })
-                    .catch(err=>{
-                            
-                            this.$message.error('提交失败，请重试！');
-                      })
-                   })
-                })
-                .catch(err=>{
+                                    });
+                                })
+                                .catch(err=>{
 
-                })
-           }
-         //立即购买的结算
-         else if(this.$route.params.isCart==="false"){
-             this.axios.post("/authOrder",{
-                 "aid":this.address.id,
-                 "gid":this.databs.gid,
-                 "count":this.databs.count
-             })
-             .then(res=>{
-                 this.$message({
-                                message: '提交成功',
-                                type: 'success'
-                    
-                });
-             })
-             .catch(erro=>{
-                this.$message.error('提交失败，请重试！');
-             })
-         }
-            // console.log("list")
-            // console.log(list)
-            // this.databs.forEach(element=>{
-            //     list.push({
-            //         "gid":element.gid,
-            //         "count":element.count,
+                                })
+                        }
+                        //立即购买的结算
+                        else if(localStorage.getItem("isCart")==="false"){
+                            console.log("DataNase")
+                            console.log(this.databs[0].gid)
+                            console.log(this.databs[0].count)
+                            console.log(this.address.id)
+                            this.axios.post("/authOrder",{
+                                "aid":this.address.id,
+                                "gid":this.databs[0].gid,
+                                "count":this.databs[0].count
+                            })
+                            .then(res=>{
+                                console.log("Post")
+                                console.log(res.data)
+                                localStorage.removeItem("selection")
+                                localStorage.removeItem("total_price")
+                                localStorage.removeItem("address")
+                                this.databs=[],
+                                this.address="",
+                                this.total_price=0
+                                this.$message({
+                                                message: '提交成功',
+                                                type: 'success'
+                                    
+                                });
+                            })
+                            .catch(erro=>{
+                                this.$message.error('提交失败，请重试！');
+                            })
+                        }
 
-            //     })
-            // })
-            // console.log(list)
-            this.axios.post("/authOrder",{
-                "aid":this.address.id,
-                "cartList":list,
-                "total":localStorage.getItem("total_price")
-            })
-            // .then(res=>{
-            //      //从购物车中删除
-            //      this.databs.forEach(item=>{
-            //          this.axios.delete("/authCart/"+item.id)
-            //          .then(res=>{
-            //               //清空结算
-            //                 localStorage.removeItem("selection")
-            //                 localStorage.removeItem("total_price")
-            //                 localStorage.removeItem("address")
-            //                 this.databs=[]
-            //                 this.address="",
-            //                 this.total_price=0
-            //                 localStorage.setItem("Issettlement","true")
-                            
-            //                 this.$message({
-            //                     message: '提交成功',
-            //                     type: 'success'
-                    
-            //                 });
-            //          })
-            //         .catch(err=>{
-                            
-            //                 this.$message.error('提交失败，请重试！');
-            //          })
-            //      })
-                
-            // })
-            // .catch(err=>{
-            
-            // //    this.$message.error('提交失败，请重试！');
-            // })
+                        }
+                    }
+          
         }
     },
 }
