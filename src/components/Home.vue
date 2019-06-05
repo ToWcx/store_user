@@ -177,7 +177,9 @@ import dh from './Head'
 import searchTool from './SearchTool'
 export default {
     name: 'home',
+
     inject:['reload'],
+
     components: {
         lbt,
         dh,

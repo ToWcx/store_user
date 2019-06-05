@@ -45,8 +45,11 @@
 <script>
 import addressOptions from './AddressOptions.vue'
 import dh from './Head'
+
 export default {
+
   inject:['reload'],
+
   components:{
     dh,
     'addressOptions':addressOptions
@@ -141,17 +144,18 @@ export default {
               this.$message({
                 message: '添加成功',
                 type: 'success'
-              });
+              })
               //实时在页面中更新
                console.log("daddress")
               console.log(res.data)
-              this.address.push({
-                "name":this.form.address,
-                "receiveName":this.form.receiveName,
-                "receivePhone":this.form.receivePhone,
-              })
+              // this.address.push({
+              //   "name":this.form.address,
+              //   "receiveName":this.form.receiveName,
+              //   "receivePhone":this.form.receivePhone,
+              // })
               this.dialogFormVisible=false
-              this.reload
+              this.reload()
+              console.log(this.address)
             })
             .catch(err=>{
               this.$message.error('添加失败，请重试！');
@@ -192,7 +196,7 @@ export default {
     getAdress(address){
       if(localStorage.getItem("select")==="true"){
           localStorage.setItem("address",JSON.stringify(address))
-          localStorage.setItem("select","false")
+          localStorage.setItem("select",)
           this.$router.push({name:'settlement'})
       }
     }
