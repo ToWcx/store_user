@@ -27,7 +27,8 @@
           <el-form-item label="手机号码" prop="receivePhone">
             <el-input v-model="form.receivePhone" autocomplete="off"></el-input>
           </el-form-item>
-              <addressOptions v-on:addressByChild="addressByChild"></addressOptions>
+              <el-input v-if="this.operation==='edit'" v-model="form.name"></el-input>
+              <addressOptions v-else v-on:addressByChild="addressByChild"></addressOptions>
           <el-switch
             v-model="Default"
             inactive-text="设为默认地址">
@@ -43,38 +44,9 @@
 </template>
 <script>
 import addressOptions from './AddressOptions.vue'
-const address_options=[
-  {
-    value:"",
-    label:"",
-    children:[
-      {
-        value:"",
-        label:"",
-        children:[
-          {
-            value:"",
-            label:"",
-            children:[
-              {
-                value:"",
-                label:"",
-                children:[
-                  {
-                    
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-
-]
 import dh from './Head'
 export default {
+  inject:['reload'],
   components:{
     dh,
     'addressOptions':addressOptions
@@ -112,7 +84,7 @@ export default {
        form:{
           receiveName:"",
           receivePhone:"",
-          address:"",
+          name:"",
        },rules: {
             receiveName: [
                 { validator: checkName, trigger: 'blur' }
@@ -122,7 +94,7 @@ export default {
             ],
             },
        address:[],
-       address_options,
+      //  address_options,
        operation:"",
        index:0,
        value:"",
@@ -157,6 +129,7 @@ export default {
     add_submit(){
       //添加新地址
       if(this.operation==="add"){
+
            this.axios.post("/authAddress",
             {
                 "name":this.form.address,
@@ -172,23 +145,30 @@ export default {
               //实时在页面中更新
                console.log("daddress")
               console.log(res.data)
-              this.address.push(res.data)
+              this.address.push({
+                "name":this.form.address,
+                "receiveName":this.form.receiveName,
+                "receivePhone":this.form.receivePhone,
+              })
               this.dialogFormVisible=false
+              this.reload
             })
             .catch(err=>{
               this.$message.error('添加失败，请重试！');
             })
           // alert(this.form.address)
       }else if(this.operation==="edit"){//修改地址
+      // console.log("Address")
+      // console.log(this.form.name)
+      // console.log(this.form.receiveName)
+      // console.log(this.form.receivePhone)
+      // console.log(this.address[this.index].id)
         this.axios.put("/authAddress",
             {
-                "address":this.form.address,
+                "name":this.form.name,
                 "receiveName":this.form.receiveName,
                 "receivePhone":this.form.receivePhone,
-                "uid":this.address[this.index].uid,
-                "postcode": this.address[this.index].postcode,
-                "aid":this.address[this.index].aid,
-                "id":5
+                "id":this.address[this.index].id,
             }
             )
             .then(res=>{
@@ -196,7 +176,7 @@ export default {
                 message: '修改成功',
                 type: 'success'
               });
-              this.$router.go(0)
+              // this.$router.go(0)
               this.dialogFormVisible=false
             })
             .catch(err=>{

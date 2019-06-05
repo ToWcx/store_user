@@ -96,24 +96,24 @@ export default {
     doLike(){
       if(this.like==''){
         if(this.selected === 0){
-          this.axios.get('/goodsImg')
+          this.axios.get('/goods')
           .then(res => {
             this.list = res.data.list
           })
         }else{
-          this.axios.get('/goodsImg?type='+this.selected)
+          this.axios.get('/goods?type='+this.selected)
           .then(res => {
             this.list = res.data.list
           })
         }
       }else{
         if(this.selected === 0){
-          this.axios.get('/goodsImg?like='+this.like)
+          this.axios.get('/goods?like='+this.like)
           .then(res => {
             this.list = res.data.list
           })
         }else{
-          this.axios.get('/goodsImg?type='+this.selected+'&like='+this.like)
+          this.axios.get('/goods?type='+this.selected+'&like='+this.like)
           .then(res => {
             this.list = res.data.list
           })
@@ -122,7 +122,7 @@ export default {
     }
   },
   created(){
-    this.axios.get('/goodsImg')
+    this.axios.get('/goods')
     .then(res => {
       this.list = res.data.list
     })
