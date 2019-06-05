@@ -37,9 +37,9 @@
         <div class="good_wrapper">
             <div class="good_list">
                 <ul>
-                    <h1 id="toolbar_ls">零食</h1>
-                    <template v-for="object in goods">
-                        <li v-if="object.cid==1" :key="object.id">
+                    <h1 class="goods_title" id="toolbar_ls">零食</h1>
+                    <!-- <template v-for="object in goods"> -->
+                        <li v-for="object in goods" v-if="object.cid==1" :key="object.id">
                             <div class="img"><router-link :to="{path: `/home/${object.id}`}"><img :src="doImg(object.img)" class="img"></router-link></div>
                             <div class="good_desc"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">{{object.name}}</router-link></div>
                             <p class="intro">
@@ -76,14 +76,15 @@
                                 <div class="ljgm"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">立即购买</router-link></div>
                             </div>
                         </li>
-                    </template>
+                    <!-- </template> -->
                 </ul>
                 
+                
                 <ul>
-                    <h1>书籍</h1>
+                    <h1 class="goods_title">书籍</h1>
                     <div class="hide" id="toolbar_sj"></div>
-                    <template v-for="object in goods">
-                        <li v-if="object.cid==2" :key="object.id">
+                    <!-- <template v-for="object in goods"> -->
+                        <li v-for="object in goods" v-if="object.cid==2" :key="object.id">
                             <div class="img"><router-link :to="{path: `/home/${object.id}`}"><img :src="doImg(object.img)" class="img"></router-link></div>
                             <div class="good_desc"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">{{object.name}}</router-link></div>
                             <p class="intro">
@@ -118,13 +119,13 @@
                                 <div class="ljgm"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">立即购买</router-link></div>
                             </div>
                         </li>
-                    </template>
+                    <!-- </template> -->
                 </ul>
                 <ul>
-                    <h1>游戏</h1>
+                    <h1 class="goods_title">游戏</h1>
                     <div class="hide" id="toolbar_yx"></div>
-                    <template v-for="object in goods">
-                        <li v-if="object.cid==3" :key="object.id">
+                    <!-- <template v-for="object in goods"> -->
+                        <li v-for="object in goods" v-if="object.cid==3" :key="object.id">
                             <div class="img"><router-link :to="{path: `/home/${object.id}`}"><img :src="doImg(object.img)" class="img"></router-link></div>
                             <div class="good_desc"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">{{object.name}}</router-link></div>
                             <p class="intro">
@@ -160,7 +161,7 @@
                                 <div class="ljgm"><router-link :to="{path: `/home/${object.id}`}" class="link" :title="object.name">立即购买</router-link></div>
                             </div>
                         </li>
-                    </template>
+                    <!-- </template> -->
                 </ul>
             </div>
         </div>
@@ -431,7 +432,10 @@ export default {
     .hide {
         /*display: none;*/
         position: absolute;
-        margin-top: -65px;
+        margin-top: -42px;
+    }
+    .goods_title{
+        color: #424242;
     }
     /* .search-center{
         text-align: center;
@@ -526,4 +530,5 @@ export default {
     .div_float{
         float:left
     }
+
 </style>
