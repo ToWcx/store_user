@@ -192,6 +192,7 @@ export default {
     getAdress(address){
       if(localStorage.getItem("select")==="true"){
           localStorage.setItem("address",JSON.stringify(address))
+          localStorage.setItem("select","false")
           this.$router.push({name:'settlement'})
       }
     }
